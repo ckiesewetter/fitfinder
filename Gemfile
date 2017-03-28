@@ -35,6 +35,8 @@ gem 'jbuilder', '~> 2.5'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 gem 'rspec-rails'
+# gem chromedriver-helper
+gem 'chromedriver-helper'
 # gem for devise
 gem 'devise'
 # gem for paperclip
