@@ -5,17 +5,13 @@
 <table>
   <thead>
     <tr>
-      <th>Title</th>
+      <th>Name</th>
+      <th>User</th>
+      <th>Website</th>
       <th>Description</th>
-      <th>Time</th>
-      <th>Date</th>
-      <th>Location name</th>
-      <th>Address</th>
-      <th>City</th>
-      <th>State</th>
-      <th>Zip</th>
-      <th>Latitude</th>
-      <th>Longitude</th>
+      <th>Next at</th>
+      <th>Location</th>
+      <th>Schedule</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -23,17 +19,13 @@
   <tbody>
     <% @activities.each do |activity| %>
       <tr>
-        <td><%= activity.title %></td>
+        <td><%= activity.name %></td>
+        <td><%= activity.user_id %></td>
+        <td><%= activity.website %></td>
         <td><%= activity.description %></td>
-        <td><%= activity.time %></td>
-        <td><%= activity.date %></td>
-        <td><%= activity.location_name %></td>
-        <td><%= activity.address %></td>
-        <td><%= activity.city %></td>
-        <td><%= activity.state %></td>
-        <td><%= activity.zip %></td>
-        <td><%= activity.latitude %></td>
-        <td><%= activity.longitude %></td>
+        <td><%= activity.next_at %></td>
+        <td><%= activity.location %></td>
+        <td><%= activity.schedule %></td>
         <td><%= link_to 'Show', activity %></td>
         <td><%= link_to 'Edit', edit_activity_path(activity) %></td>
         <td><%= link_to 'Destroy', activity, method: :delete, data: { confirm: 'Are you sure?' } %></td>
