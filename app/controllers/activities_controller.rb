@@ -37,6 +37,16 @@ class ActivitiesController < ApplicationController
     end
   end
 
+  def map_location
+    # @activity = Activity.find(params[:activity_id])
+    @hash = Gmaps4rails.build_markers(Activity.all) do |activity, marker|
+      marker.lat(activity.latitude)
+      marker.lng(activity.longitude)
+      marker.infowindow("<em>" + activity.address + "</em>")
+    end
+    render json: @hash.to_json
+  end
+
   # PATCH/PUT /activities/1
   # PATCH/PUT /activities/1.json
   def update
@@ -59,6 +69,17 @@ class ActivitiesController < ApplicationController
       format.html { redirect_to activities_url, notice: 'Activity was successfully destroyed.' }
       format.json { head :no_content }
     end
+  end
+
+  # This is a method to list all activities for the index map
+  def show_all_activities
+    @all_activities = Activity.all
+    @hash = Gmaps4rails.build_markers(@all_activities) do |activity, marker|
+      marker.lat(activity.latitude)
+      marker.lng(activity.longitude)
+      marker.infowindow("<strong>" + activity.name + "</strong><br><em>" + activity.address + "</em><br>")
+    end
+    render json: @hash.to_json
   end
 
   private
