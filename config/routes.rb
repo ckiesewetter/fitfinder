@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  devise_for :users
   resources :activities do
       get 'map_location', on: :collection
   end

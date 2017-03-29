@@ -37,6 +37,12 @@ gem 'gmaps4rails'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 gem 'rspec-rails'
+# gem chromedriver-helper
+gem 'chromedriver-helper'
+# gem for devise
+gem 'devise'
+# gem for paperclip
+gem 'paperclip'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
