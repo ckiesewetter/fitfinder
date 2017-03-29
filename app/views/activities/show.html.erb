@@ -2,8 +2,18 @@
 <div id="activity_map" data-activity-id="<%= @activity.id %>">Google Map will Appear Here</div>
 
 <p>
-  <strong>Title:</strong>
-  <%= @activity.title %>
+  <strong>Name:</strong>
+  <%= @activity.name %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @activity.user_id %>
+</p>
+
+<p>
+  <strong>Website:</strong>
+  <%= @activity.website %>
 </p>
 
 <p>
@@ -12,49 +22,23 @@
 </p>
 
 <p>
-  <strong>Time:</strong>
-  <%= @activity.time %>
+  <strong>Next at:</strong>
+  <%= @activity.next_at %>
 </p>
 
 <p>
-  <strong>Date:</strong>
-  <%= @activity.date %>
+  <strong>Location:</strong>
+  <%= @activity.location %>
 </p>
 
 <p>
-  <strong>Location name:</strong>
-  <%= @activity.location_name %>
+  <strong>Schedule:</strong>
+  <%= @activity.schedule %>
 </p>
 
-<p>
-  <strong>Address:</strong>
-  <%= @activity.address %>
-</p>
-
-<p>
-  <strong>City:</strong>
-  <%= @activity.city %>
-</p>
-
-<p>
-  <strong>State:</strong>
-  <%= @activity.state %>
-</p>
-
-<p>
-  <strong>Zip:</strong>
-  <%= @activity.zip %>
-</p>
-
-<p>
-  <strong>Latitude:</strong>
-  <%= @activity.latitude %>
-</p>
-
-<p>
-  <strong>Longitude:</strong>
-  <%= @activity.longitude %>
-</p>
+<% if @activity.location %>
+  <%= @activity.location.name %>
+<% end %>
 
 <%= link_to 'Edit', edit_activity_path(@activity) %> |
 <%= link_to 'Back', activities_path %>
