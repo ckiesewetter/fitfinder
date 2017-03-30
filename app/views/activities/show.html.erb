@@ -37,7 +37,31 @@
 </p>
 
 <% if @activity.location %>
-  <%= @activity.location.name %>
+  <p>
+    <strong>Name:</strong>
+    <%= @activity.location.name %>
+  </p>
+
+  <p>
+    <strong>Address:</strong>
+    <%= @activity.location.address %>
+  </p>
+
+  <p>
+    <strong>City:</strong>
+    <%= @activity.location.city %>
+  </p>
+
+  <p>
+    <strong>State:</strong>
+    <%= @activity.location.state %>
+  </p>
+
+  <p>
+    <strong>Zip:</strong>
+    <%= @activity.location.zip %>
+  </p>
+
 <% end %>
 
 <%= link_to 'Edit', edit_activity_path(@activity) %> |
