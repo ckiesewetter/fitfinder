@@ -40,9 +40,9 @@ class ActivitiesController < ApplicationController
   def map_location
     # @activity = Activity.find(params[:activity_id])
     @hash = Gmaps4rails.build_markers(Activity.all) do |activity, marker|
-      marker.lat(activity.latitude)
-      marker.lng(activity.longitude)
-      marker.infowindow("<em>" + activity.address + "</em>")
+      marker.lat(activity.location.latitude)
+      marker.lng(activity.location.longitude)
+      marker.infowindow("<em>" + activity.location.address + "</em>")
     end
     render json: @hash.to_json
   end
