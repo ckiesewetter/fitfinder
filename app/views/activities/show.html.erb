@@ -1,68 +1,80 @@
 <p id="notice"><%= notice %></p>
-<div id="activity_map" data-activity-id="<%= @activity.id %>">Google Map will Appear Here</div>
 
-<p>
-  <strong>Name:</strong>
-  <%= @activity.name %>
-</p>
 
-<p>
-  <strong>User:</strong>
-  <%= @activity.user_id %>
-</p>
+<div class="row">
+  <div class="col-sm-6">
+    <div class="media">
+      <div class="media-left">
+        <a href="#">
+          <img class="thumbnail" src="http://placehold.it/64x64" alt="...">
+        </a>
+      </div>
+      <div class="media-body">
+        <% if @activity.location %>
+        <h3 class="media-heading">Location: <%= @activity.location.name %></h3>
+        <p>
+          <strong>Address:</strong>
+          <%= @activity.location.address %>
+        </p>
+        <p>
+          <strong>City:</strong>
+          <%= @activity.location.city %>
+        </p>
+        <p>
+          <strong>State:</strong>
+          <%= @activity.location.state %>
+        </p>
+        <p>
+          <strong>Zip:</strong>
+          <%= @activity.location.zip %>
+        </p>
+        <% end %>
+      </div>
+    </div>
+  </div>
 
-<p>
-  <strong>Website:</strong>
-  <%= @activity.website %>
-</p>
+  <div class="col-sm-6">
+    <div class="media">
+      <div class="media-left">
+        <a href="#">
+          <img class="thumbnail" src="http://placehold.it/64x64" alt="...">
+        </a>
+      </div>
+      <div class="media-body">
+        <h3 class="media-heading">Organizer: <%= @activity.name %></h3>
+        <p>
+          <strong>User:</strong>
+          <%= @activity.user_id %>
+        </p>
+        <p>
+          <strong>Website:</strong>
+          <%= @activity.website %>
+        </p>
+        <p>
+          <strong>Description:</strong>
+          <%= @activity.description %>
+        </p>
+        <p>
+          <strong>Next at:</strong>
+          <%= @activity.next_at.strftime("%B %-d, %Y | %l:%M %P") %>
+        </p>
+        <p>
+          <strong>Location:</strong>
+          <%= @activity.location.name %>
+        </p>
+        <p>
+          <strong>Schedule:</strong>
+          <%= @activity.schedule %>
+        </p>
+      </div>
+    </div>
+  </div>
+    <p>
+    <%= link_to 'Edit', edit_activity_path(@activity) %> |
+    <%= link_to 'Back', activities_path %>
+    </p>
+</div>
 
-<p>
-  <strong>Description:</strong>
-  <%= @activity.description %>
-</p>
-
-<p>
-  <strong>Next at:</strong>
-  <%= @activity.next_at %>
-</p>
-
-<p>
-  <strong>Location:</strong>
-  <%= @activity.location %>
-</p>
-
-<p>
-  <strong>Schedule:</strong>
-  <%= @activity.schedule %>
-</p>
-
-<% if @activity.location %>
-  <p>
-    <strong>Name:</strong>
-    <%= @activity.location.name %>
-  </p>
-
-  <p>
-    <strong>Address:</strong>
-    <%= @activity.location.address %>
-  </p>
-
-  <p>
-    <strong>City:</strong>
-    <%= @activity.location.city %>
-  </p>
-
-  <p>
-    <strong>State:</strong>
-    <%= @activity.location.state %>
-  </p>
-
-  <p>
-    <strong>Zip:</strong>
-    <%= @activity.location.zip %>
-  </p>
-
-<% end %>
-
-<%= link_to 'Edit', edit_activity_path(@activity) %> |
-<%= link_to 'Back', activities_path %>
+<div class="row">
+  <div class="col-sm-12" id="activity_map" data-activity-id="<%= @activity.id %>">Google Map will Appear Here</div>
+</div>

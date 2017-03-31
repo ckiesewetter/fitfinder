@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.feature "NewActivities", type: :feature do
   context "Activities Page" do
     Steps "Going to Activities Page" do
-      Given "I visit /activities" do
+      Given "I have an activity" do
         visit "/activities"
       end
       Then "I see Activities" do
