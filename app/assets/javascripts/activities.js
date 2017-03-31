@@ -20,7 +20,7 @@ var handler = Gmaps.build('Google');
     var markers = handler.addMarkers(dataFromServer);
     handler.bounds.extendWith(markers);
     handler.fitMapToBounds();
-    handler.getMap().setZoom(15);
+    handler.getMap().setZoom(12);
   }
 
   function showLocations(dataFromServer){
