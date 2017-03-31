@@ -56,11 +56,11 @@
         </p>
         <p>
           <strong>Next at:</strong>
-          <%= @activity.next_at %>
+          <%= @activity.next_at.strftime("%B %-d, %Y | %l:%M %P") %>
         </p>
         <p>
           <strong>Location:</strong>
-          <%= @activity.location %>
+          <%= @activity.location.name %>
         </p>
         <p>
           <strong>Schedule:</strong>
