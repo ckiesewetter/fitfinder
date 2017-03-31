@@ -231,9 +231,9 @@ DEPENDENCIES
   capybara
   chromedriver-helper
   coffee-rails (~> 4.2)
+  devise
   geocoder
   gmaps4rails
-  devise
   jbuilder (~> 2.5)
   jquery-rails
   launchy
