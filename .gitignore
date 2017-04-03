@@ -46,3 +46,5 @@ db/schema.rb
 
 # Ignore application configuration
 /config/application.yml
+# Ignore the .pub file which refers to the ssh key
+.pub
