@@ -1,4 +1,3 @@
-# Was global now will run on environments > development and production only, excluding test.
 unless Rails.env.test?
   ActionMailer::Base.delivery_method = :smtp
   ActionMailer::Base.smtp_settings = {
