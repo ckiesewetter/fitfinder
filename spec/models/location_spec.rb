@@ -22,6 +22,5 @@ RSpec.describe Location, type: :model do
     location.reload
     expect(location.latitude).to eq(32.7504799)
     expect(location.longitude).to eq(-117.1336303)
-
   end
 end
