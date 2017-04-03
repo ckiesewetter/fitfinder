@@ -4,14 +4,7 @@ RSpec.feature "LandingPageTaglines", type: :feature do
   context 'Going to landing page' do
     Steps 'Being welcomed' do
       Given 'A user with email george@example.com and password curiousmonkey and I login' do
-        @user = User.new
-        @user.email = "george@example.com"
-        @user.password = "curiousmonkey"
-        @user.save!
-        visit '/'
-        fill_in 'Email', with: 'george@example.com'
-        fill_in 'Password', with: 'curiousmonkey'
-        click_button 'Log in'
+        create_user_and_sign_in
       end
       Then 'I can see a tagline and description' do
         expect(page).to have_content("Welcome to FitFinder!")

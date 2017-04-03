@@ -5,10 +5,7 @@ RSpec.feature "ForgotPassword", type: :feature do
 context 'Clicking on the forgot your password link' do
   Steps 'Enter email_regexp' do
     Given 'A user with email george@example.com and password curiousmonkey' do
-      @user = User.new
-      @user.email = "george@example.com"
-      @user.password = "curiousmonkey"
-      @user.save!
+      create_user
     end
     Given 'I click on the send me reset password instructions link on the     password reset page' do
       visit 'users/password/new'
