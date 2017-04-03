@@ -254,7 +254,6 @@ DEPENDENCIES
   chromedriver-helper
   coffee-rails (~> 4.2)
   devise
-  figaro
   geocoder
   gmaps4rails
   jbuilder (~> 2.5)
