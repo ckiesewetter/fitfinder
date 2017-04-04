@@ -8,7 +8,8 @@ RSpec.feature "MapMarkerDisplays", type: :feature do
       end
       Given "I'm on the landing page" do
         visit '/'
-        @location = Location.new(address: '2804 Lincoln Ave',
+        @location = Location.new(name: 'Petco Park',
+        address: '2804 Lincoln Ave',
         city: 'San Diego',
         state: "CA",
         zip: '92104'
@@ -25,16 +26,21 @@ RSpec.feature "MapMarkerDisplays", type: :feature do
         fill_in 'Description', with: 'Run fast'
         fill_in 'Location', with: @location.id
         fill_in 'Schedule', with: 'M-F'
+        fill_in 'Requirement', with: 'Bring shoes'
+        fill_in 'Pricing', with: '$5'
         click_button 'Create Activity'
       end
       Then "I can go back to the Activities page" do
         click_link "Back"
-        save_and_open_page
       end
       Then "I can see information on the Activities page" do
+        expect(page).to have_content("Petco Park")
         expect(page).to have_content("Wind Sprints")
         expect(page).to have_content("www.google.com")
+        expect(page).to have_content("M-F")
         expect(page).to have_content("Run fast")
+        expect(page).to have_content("Bring shoes")
+        expect(page).to have_content("$5")
       end
     end
   end
