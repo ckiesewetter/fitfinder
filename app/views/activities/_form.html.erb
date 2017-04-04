@@ -46,6 +46,21 @@
     <%= f.text_area :schedule %>
   </div>
 
+  <div class="field">
+    <%= f.label :requirement %>
+    <%= f.text_area :requirement %>
+  </div>
+
+  <div class="field">
+    <%= f.label :fitness_level %>
+    <%= f.select :fitness_level, ['Beginner', 'Intermediate', 'Advanced', 'All Levels Welcome'] %>
+  </div>
+
+  <div class="field">
+    <%= f.label :pricing %>
+    <%= f.text_field :pricing %>
+  </div>
+
   <div class="actions">
     <%= f.submit %>
   </div>

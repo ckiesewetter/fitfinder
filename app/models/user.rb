@@ -10,4 +10,8 @@ class User < ApplicationRecord
   validates_attachment :image,
     content_type: { content_type: ["image/jpg", "image/jpeg", "image/png", "image/gif"] },
     size: { in: 0..10.megabytes }
+
+  def name
+    "#{self.first_name} #{self.last_name}"
+  end
 end
