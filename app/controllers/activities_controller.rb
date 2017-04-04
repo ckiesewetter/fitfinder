@@ -40,9 +40,12 @@ class ActivitiesController < ApplicationController
   def map_location
     # @activity = Activity.find(params[:activity_id])
     @hash = Gmaps4rails.build_markers(Activity.all) do |activity, marker|
-      marker.lat(activity.latitude)
-      marker.lng(activity.longitude)
-      marker.infowindow("<em>" + activity.address + "</em>")
+      marker.lat(activity.location.latitude)
+      marker.lng(activity.location.longitude)
+      marker.infowindow(
+      "<strong>" + "Activity: " + "</strong>" + activity.name + "<br>" + "<strong>" + "Address: " + "</strong>" + activity.location.address + "<br>" + "<strong>" + "Description: " + "</strong>" + activity.description + "<br>" +
+      "<strong>" + "When: " + "</strong>" + activity.next_at.strftime("%B %-d, %Y | %-l:%M%P") + "<br>" +
+      "<strong>" + "Schedule: " + "</strong>" + activity.schedule + "<br>" + "<strong>" + "Website: " + "</strong>" + activity.website)
     end
     render json: @hash.to_json
   end
@@ -75,9 +78,9 @@ class ActivitiesController < ApplicationController
   def show_all_activities
     @all_activities = Activity.all
     @hash = Gmaps4rails.build_markers(@all_activities) do |activity, marker|
-      marker.lat(activity.latitude)
-      marker.lng(activity.longitude)
-      marker.infowindow("<strong>" + activity.name + "</strong><br><em>" + activity.address + "</em><br>")
+      marker.lat(activity.location.latitude)
+      marker.lng(activity.location.longitude)
+      marker.infowindow("<strong>" + activity.name + "</strong><br><em>" + activity.location.address + "</em><br>")
     end
     render json: @hash.to_json
   end

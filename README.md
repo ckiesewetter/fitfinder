@@ -22,3 +22,7 @@ Things you may want to cover:
 * Deployment instructions
 
 * ...
+
+DONE!!! Submit and save latitude and longitude for location. DONE!!!
+DONE!!! Submit and save activity and be able to see all activities. DONE!!!
+Able to see all activities and location on google map.

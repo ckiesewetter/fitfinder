@@ -1,6 +1,3 @@
-// # Place all the behaviors and hooks related to the matching controller here.
-// # All this logic will automatically be available in application.js.
-// # You can use CoffeeScript in this file: http://coffeescript.org/
 
 // $(document).ready(function(){
 var handler = Gmaps.build('Google');
@@ -20,7 +17,7 @@ var handler = Gmaps.build('Google');
     var markers = handler.addMarkers(dataFromServer);
     handler.bounds.extendWith(markers);
     handler.fitMapToBounds();
-    handler.getMap().setZoom(15);
+    handler.getMap().setZoom(12);
   }
 
   function showLocations(dataFromServer){
