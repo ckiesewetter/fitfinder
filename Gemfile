@@ -20,6 +20,7 @@ gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.2'
 # See https://github.com/rails/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
+gem "figaro"
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
@@ -41,6 +42,9 @@ gem 'rspec-rails'
 gem 'chromedriver-helper'
 # gem for devise
 gem 'devise'
+# gems for omniauth and omniauth-facebook
+# gem 'omniauth'
+gem 'omniauth-facebook'
 # gem for paperclip
 gem 'paperclip'
 
