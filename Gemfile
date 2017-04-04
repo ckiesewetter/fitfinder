@@ -64,6 +64,7 @@ group :test do
   gem 'rspec-example_steps'
   gem 'launchy'
   gem 'selenium-webdriver'
+  gem 'simplecov', :require => false
 end
 
 

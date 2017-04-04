@@ -43,3 +43,7 @@ config/database.yml
 
 # Ignore the schema between environments
 db/schema.rb
+
+# Ignore the .pub file which refers to the ssh key
+.pub
+coverage
