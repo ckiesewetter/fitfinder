@@ -14,4 +14,8 @@ class ApplicationController < ActionController::Base
     devise_parameter_sanitizer.permit(:account_update, keys: [:last_name])
   end
 
+  def new_session_path(scope)
+    new_user_session_path
+  end
+
 end
