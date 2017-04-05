@@ -16,4 +16,7 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   # GET /apartments/:apartment_id/map_locations
   get '/all_markers' => 'activities#show_all_activities'
+
+  # POST for adding a user/participant to an activity.
+  post '/participant/:activity_id' => 'participant#create'
 end

@@ -5,3 +5,7 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+user = User.create(name: 'Charlie Kiesewetter')
+locaiton = Location.create(location: '')
+activity = Activity.create(user: user, location: location)
