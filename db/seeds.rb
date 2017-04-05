@@ -5,3 +5,15 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+email = 'findfit-admin@gmail.com'
+
+admin = User.where(email: email).first
+if admin.blank?
+  admin = User.create!(
+    :first_name => 'Joe',
+    :last_name => 'Admin',
+    :email => email,
+    :password => 'password'
+  )
+end
+admin.add_role(:admin)

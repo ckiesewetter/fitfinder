@@ -36,15 +36,11 @@
     <%= f.text_field :zip %>
   </div>
 
-  <div class="field">
-    <%= f.label :latitude %>
-    <%= f.text_field :latitude %>
-  </div>
+<%= f.hidden_field :latitude, value: location.latitude %>
 
-  <div class="field">
-    <%= f.label :longitude %>
-    <%= f.text_field :longitude %>
-  </div>
+
+<%= f.hidden_field :longitude, value: location.longitude %>
+
 
   <div class="actions">
     <%= f.submit %>
