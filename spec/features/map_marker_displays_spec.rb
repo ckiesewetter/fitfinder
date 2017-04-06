@@ -21,7 +21,7 @@ RSpec.feature "MapMarkerDisplays", type: :feature do
       end
       Then "I can fill in form fields" do
         fill_in 'Name', with: 'Wind Sprints'
-        fill_in 'User', with: 1
+        # fill_in 'User', with: 1
         fill_in 'Website', with: 'www.google.com'
         fill_in 'Description', with: 'Run fast'
         fill_in 'Location', with: @location.id

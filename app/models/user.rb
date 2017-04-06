@@ -1,9 +1,12 @@
 class User < ApplicationRecord
+  rolify
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   # reference to activities
   devise :database_authenticatable, :registerable, :recoverable, :rememberable, :trackable, :validatable, :omniauthable, :omniauth_providers => [:facebook]
 
+  has_many :participations
+  has_many :active_participations, through: :participations, source: :activity, class_name: "Activity"
   has_many :activities
 
   # provides support for paperclip for the user avatar.

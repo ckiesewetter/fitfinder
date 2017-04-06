@@ -29,7 +29,6 @@ RSpec.feature "NewActivities", type: :feature do
       Then "I am taken to a page that shows form fields" do
         expect(page).to have_content("New Activity")
         expect(page).to have_content("Name")
-        expect(page).to have_content("User")
         expect(page).to have_content("Website")
         expect(page).to have_content("Description")
         expect(page).to have_content("Next at")
@@ -39,7 +38,7 @@ RSpec.feature "NewActivities", type: :feature do
       When "I can fill in form fields" do
         fill_in 'Name', with: 'Wind Sprints'
         # Using @user.id instead of an actual id like 1 tells the virtual db to use whatever rspec is using for the id.
-        fill_in 'User', with: @user.id
+        # fill_in 'User', with: @user.id
         fill_in 'Website', with: 'www.google.com'
         fill_in 'Description', with: 'Run fast'
         fill_in 'Location', with: @location.id
