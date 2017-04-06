@@ -12,13 +12,15 @@
   <thead>
     <tr>
       <th>Name</th>
-      <th>User</th>
-      <th>Website</th>
       <th>Description</th>
-      <th>Next at</th>
       <th>Location</th>
       <th>Schedule</th>
-      <th colspan="3"></th>
+      <th>Next at</th>
+      <th>Organizer Name</th>
+      <th>Fitness Level</th>
+      <th>Requirements</th>
+      <th>Website</th>
+      <th>Pricing</th>
     </tr>
   </thead>
 
@@ -26,12 +28,15 @@
     <% @activities.each do |activity| %>
       <tr>
         <td><%= activity.name %></td>
-        <td><%= activity.user_id %></td>
-        <td><%= activity.website %></td>
         <td><%= activity.description %></td>
-        <td><%= activity.next_at %></td>
-        <td><%= activity.location %></td>
+        <td><%= activity.location.try(:name) %></td>
         <td><%= activity.schedule %></td>
+        <td><%= activity.next_at.try(:strftime, "%B %-d, %Y | %l:%M %P") %></td>
+        <td><%= activity.organizer_name %></td>
+        <td><%= activity.fitness_level %></td>
+        <td><%= activity.requirement %></td>
+        <td><%= activity.website %></td>
+        <td><%= activity.pricing %></td>
         <td><%= link_to 'Show', activity %></td>
         <td><%= link_to 'Edit', edit_activity_path(activity) %></td>
         <td><%= link_to 'Destroy', activity, method: :delete, data: { confirm: 'Are you sure?' } %></td>
