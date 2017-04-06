@@ -56,7 +56,7 @@
         </p>
         <p>
           <strong>Next at:</strong>
-          <%= @activity.next_at.strftime("%B %-d, %Y | %l:%M %P") %>
+          <%= @activity.next_at.try(:strftime, "%B %-d, %Y | %l:%M %P") %>
         </p>
         <p>
           <strong>Location:</strong>
