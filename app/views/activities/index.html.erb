@@ -1,5 +1,3 @@
-
-
 <h1>Welcome to FitFinder!</h1>
 <p><strong>A Fitness Group Connector</strong></p>
 <hr>
@@ -37,6 +35,7 @@
         <td><%= activity.requirement %></td>
         <td><%= activity.website %></td>
         <td><%= activity.pricing %></td>
+        <td id="participate"><%= link_to 'Sign Up', "/participant/#{activity.id}", method: :post, data: { confirm: 'Are you sure?' }  %></td>
         <td><%= link_to 'Show', activity %></td>
         <td><%= link_to 'Edit', edit_activity_path(activity) %></td>
         <td><%= link_to 'Destroy', activity, method: :delete, data: { confirm: 'Are you sure?' } %></td>

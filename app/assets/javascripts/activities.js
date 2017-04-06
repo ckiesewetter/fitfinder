@@ -77,3 +77,10 @@ var handler = Gmaps.build('Google');
   // To be 'turbolinks:load' in Rails 5
   $(document).on('page:load', loadAndCreateGmap)
 // });
+
+//Swaps activity participation Sign UP link with text(not a link) Active.
+$(document).ready(function(){
+    $('a:contains("Sign Up")').click(function(){
+        $("#participate").replaceWith("<td>Active</td>");
+    });
+});
