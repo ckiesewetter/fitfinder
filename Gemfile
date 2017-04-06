@@ -48,6 +48,8 @@ gem 'omniauth-facebook'
 # gem for paperclip
 
 gem 'paperclip'
+# gem for textacular
+gem 'textacular'
 gem 'cancancan'
 gem 'rolify'
 

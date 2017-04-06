@@ -1,79 +1,88 @@
+var infoWindow;
+var map;
+var activityId;
+// Create the map when the page loads
+$(document).on('ready', loadAndCreateGmap);
 
-// $(document).ready(function(){
-var handler = Gmaps.build('Google');
+function loadAndCreateGmap() {
+  // Only load map data if activity map is on the page
+  if ($('#activity_map').length > 0 ){
+    // Access the data-activity-id attribute on the map element
+    activityId = $('#activity_map').attr('data-activity-id');
 
-  function createGmap(dataFromServer) {
-    handler.buildMap({
-        provider: {},
-        internal: {id: 'activity_map'}
+
+
+    var location = new google.maps.LatLng(32.715736, -117.161087)
+
+    map = new google.maps.Map(document.getElementById('activity_map'), {
+      center: location,
+      scrollwheel: false,
+      zoom: 12,
+    });
+
+    infoWindow = new google.maps.InfoWindow();
+    $('.activity').each(function () {
+      createMarker({'latitude': $(this).data('lat'),
+                    'longitude': $(this).data('lng'),
+                    'name': $(this).find('.name').html(),
+                    'location': $(this).find('.location').html(),
+                    'description': $(this).find('.description').html(),
+                    'when': $(this).find('.next_at').html(),
+                    'schedule': $(this).find('.schedule').html(),
+                    'website': $(this).find('.website').html(),
+                  })
+    })
+    var navigatorWindow = new google.maps.InfoWindow({map: map});
+    var navigatorMarker = new google.maps.Marker({
+      icon: {
+        path: google.maps.SymbolPath.BACKWARD_CLOSED_ARROW,
+        scale: 4,
+        strokeColor: 'blue'
       },
-      function() {
-        showLocations(dataFromServer);
-      }
-    );
-  };
-
-  function placeMarkers(dataFromServer) {
-    var markers = handler.addMarkers(dataFromServer);
-    handler.bounds.extendWith(markers);
-    handler.fitMapToBounds();
-    handler.getMap().setZoom(12);
-  }
-
-  function showLocations(dataFromServer){
-      if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(function(position) {
-        // Add our position to the collection of markers
-        dataFromServer[dataFromServer.length] = {
+      map: map
+    });
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(function(position) {
+        var pos = {
           lat: position.coords.latitude,
-          lng: position.coords.longitude,
-          infowindow: "You!"
+          lng: position.coords.longitude
         };
-        placeMarkers(dataFromServer);
+
+        navigatorMarker.setPosition(pos);
+        navigatorWindow.setPosition(pos);
+        navigatorWindow.setContent('Your Location');
+        map.setCenter(pos);
+      }, function() {
+        handleLocationError(true, navigatorWindow, map.getCenter());
       });
     } else {
-        alert("Geolocation is not available.");
-        placeMarkers(dataFromServer)
+      // Browser doesn't support Geolocation
+      handleLocationError(false, navigatorWindow, map.getCenter());
     }
   }
+  function handleLocationError(browserHasGeolocation, navigatorWindow, pos) {
+    navigatorWindow.setPosition(pos);
+    navigatorWindow.setContent(browserHasGeolocation ?
+                          'Error: The Geolocation service failed.' :
+                          'Error: Your browser doesn\'t support geolocation.');
+  }
 
+};
 
+function createMarker(place){
+  var marker = new google.maps.Marker({
+    map: map,
+    position: {lat: place.latitude, lng: place.longitude},
+  });
 
-  function loadAndCreateGmap() {
-    // Only load map data if we have a map on the page
-    if ($('#activity_map').length > 0 ){
-      // Access the data-activity-id attribute on the map element
-      var activityId = $('#activity_map').attr('data-activity-id');
-      $.ajax({
-        dataType: 'json',
-        url: '/activities/map_location',
-        method: 'GET',
-        success: function(dataFromServer) {
-          createGmap(dataFromServer);
-        },
-        error: function(jqXHR, textStatus, errorThrown) {
-          alert("Getting map data failed: " + errorThrown);
-        }
-      });
-    }
-    else if ($("#activity_map").length > 0) {
-      $.ajax({
-        dataType: 'json',
-        url: '/all_markers',
-        method: 'GET',
-        success: function(dataFromServer) {
-          createGmap(dataFromServer);
-        },
-        error: function(jqXHR, textStatus, errorThrown) {
-          alert("Getting map data failed: " + errorThrown);
-        }
-      })
-    };
-  };
-  // Create the map when the page loads the first time
-  $(document).on('ready', loadAndCreateGmap);
-  // Create the map when the contents is loaded using turbolinks
-  $(document).on('turbolinks:load', loadAndCreateGmap);
-  // To be 'turbolinks:load' in Rails 5
-  $(document).on('page:load', loadAndCreateGmap)
-// });
+  google.maps.event.addListener(marker, 'click', function() {
+    infoWindow.setContent(
+    "<strong>" + "Activity: " + "</strong>" + place.name + "<br>" +
+    "<strong>" + "Location: " + "</strong>" + place.location + "<br>" +
+    "<strong>" + "Description: " + "</strong>" + place.description + "<br>" +
+    "<strong>" + "When: " + "</strong>" + place.when + "<br>" +
+    "<strong>" + "Schedule: " + "</strong>" + place.schedule + "<br>" +
+    "<strong>" + "Website: " + "</strong>" + place.website);
+    infoWindow.open(map, this);
+  })
+}
