@@ -25,7 +25,7 @@ function loadAndCreateGmap() {
       createMarker({'latitude': $(this).data('lat'),
                     'longitude': $(this).data('lng'),
                     'name': $(this).find('.name').html(),
-                    'address': $(this).find('.location').html(),
+                    'location': $(this).find('.location').html(),
                     'description': $(this).find('.description').html(),
                     'when': $(this).find('.next_at').html(),
                     'schedule': $(this).find('.schedule').html(),
@@ -78,7 +78,7 @@ function createMarker(place){
   google.maps.event.addListener(marker, 'click', function() {
     infoWindow.setContent(
     "<strong>" + "Activity: " + "</strong>" + place.name + "<br>" +
-    "<strong>" + "Address: " + "</strong>" + place.address + "<br>" +
+    "<strong>" + "Location: " + "</strong>" + place.location + "<br>" +
     "<strong>" + "Description: " + "</strong>" + place.description + "<br>" +
     "<strong>" + "When: " + "</strong>" + place.when + "<br>" +
     "<strong>" + "Schedule: " + "</strong>" + place.schedule + "<br>" +

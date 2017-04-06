@@ -21,7 +21,7 @@ Or Search Map by Activity Information
 <br>
 <%= form_tag(activities_path, :method => "get") do %>
     <%= label :search, "Activity Search:" %>
-    <%= text_field_tag :search, params[:search], placeholder: 'Activity Name or Description' %>
+    <%= text_field_tag :search, params[:search], placeholder: 'Activity' %>
     <%= submit_tag "Search By Info", :name => nil %>
 
 <% end %>
@@ -35,13 +35,15 @@ Or Search Map by Activity Information
   <thead>
     <tr>
       <th>Name</th>
-      <th>User</th>
-      <th>Website</th>
       <th>Description</th>
-      <th>Next at</th>
       <th>Location</th>
       <th>Schedule</th>
-      <th colspan="3"></th>
+      <th>Next at</th>
+      <th>Organizer Name</th>
+      <th>Fitness Level</th>
+      <th>Requirements</th>
+      <th>Website</th>
+      <th>Pricing</th>
     </tr>
   </thead>
 
@@ -49,12 +51,15 @@ Or Search Map by Activity Information
     <% @activities.each do |activity| %>
       <tr class='activity' data-lat='<%= activity.location.latitude %>' data-lng='<%= activity.location.longitude %>'>
         <td class='name'><%= activity.name %></td>
-        <td class='user_id'><%= activity.user_id %></td>
-        <td class='website'><%= activity.website %></td>
         <td class='description'><%= activity.description %></td>
-        <td class='next_at'><%= activity.next_at.strftime("%B %-d, %Y | %-l:%M%P") %></td>
-        <td class='location'><%= activity.location.full_address %></td>
+        <td class='location'><%= activity.location.try(:name) %></td>
         <td class='schedule'><%= activity.schedule %></td>
+        <td class='next_at'><%= activity.next_at.try(:strftime, "%B %-d, %Y | %l:%M %P") %></td>
+        <td class='organizer_name'><%= activity.organizer_name %></td>
+        <td class='fitness_level'><%= activity.fitness_level %></td>
+        <td class='requirement'><%= activity.requirement %></td>
+        <td class='website'><%= activity.website %></td>
+        <td class='pricing'><%= activity.pricing %></td>
         <td><%= link_to 'Show', activity %></td>
         <td><%= link_to 'Edit', edit_activity_path(activity) %></td>
         <td><%= link_to 'Destroy', activity, method: :delete, data: { confirm: 'Are you sure?' } %></td>

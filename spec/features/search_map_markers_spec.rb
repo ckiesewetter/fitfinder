@@ -58,11 +58,11 @@ RSpec.feature "SearchMapMarkers", type: :feature do
       end
       Then "I will see a list of all activies with locations and search fields" do
         expect(page).to have_content("Jazercize")
-        expect(page).to have_content("2688 East Mission Bay Drive")
+        expect(page).to have_content("Mission Bay Park")
         expect(page).to have_content("Yoga")
-        expect(page).to have_content("704 J Street")
+        expect(page).to have_content("Learn Academy")
         expect(page).to have_content("Swimming")
-        expect(page).to have_content("101 Ocean Blvd")
+        expect(page).to have_content("Sunset Park")
         expect(page).to have_content("Search Map by Distance")
         expect(page).to have_content("Or Search Map by Activity Information ")
       end
@@ -73,11 +73,11 @@ RSpec.feature "SearchMapMarkers", type: :feature do
       end
       Then "I would see a updated map and list of activities based on search criteria" do
         expect(page).not_to have_content("Jazercize")
-        expect(page).not_to have_content("2688 East Mission Bay Drive")
+        expect(page).not_to have_content("Mission Bay Park")
         expect(page).to have_content("Yoga")
-        expect(page).to have_content("704 J Street")
+        expect(page).to have_content("Learn Academy")
         expect(page).not_to have_content("Swimming")
-        expect(page).not_to have_content("101 Ocean Blvd")
+        expect(page).not_to have_content("Sunset Park")
       end
       When "I search the map by activity info" do
         fill_in 'search', with: 'Swimming'
@@ -85,11 +85,11 @@ RSpec.feature "SearchMapMarkers", type: :feature do
       end
       Then "I would see an updated map and list of activities based on the search" do
         expect(page).not_to have_content("Jazercize")
-        expect(page).not_to have_content("2688 East Mission Bay Drive")
+        expect(page).not_to have_content("Mission Bay Park")
         expect(page).not_to have_content("Yoga")
-        expect(page).not_to have_content("704 J Street")
+        expect(page).not_to have_content("Learn Academy")
         expect(page).to have_content("Swimming")
-        expect(page).to have_content("101 Ocean Blvd")
+        expect(page).to have_content("Sunset Park")
       end
     end
   end
