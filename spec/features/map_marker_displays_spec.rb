@@ -29,7 +29,6 @@ RSpec.feature "MapMarkerDisplays", type: :feature do
       end
       Then "I can go back to the Activities page" do
         click_link "Back"
-        save_and_open_page
       end
       Then "I can see information on the Activities page" do
         expect(page).to have_content("Wind Sprints")

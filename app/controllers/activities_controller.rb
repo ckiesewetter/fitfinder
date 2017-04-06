@@ -4,7 +4,18 @@ class ActivitiesController < ApplicationController
   # GET /activities
   # GET /activities.json
   def index
-    @activities = Activity.all
+    if params[:location].present?
+      @locations = Location.joins(:activities).near(params[:location], params[:distance], :units => :mi) #.where(['activities.next_at > ?', Time.now])
+
+      @activities = []
+      @locations.each do |location|
+        @activities += location.activities
+      end
+    elsif params[:search].present?
+      @activities = Activity.search(params[:search])
+    else
+      @activities = Activity.all #.where(['activities.next_at > ?', Time.now])
+    end
   end
 
   # GET /activities/1
@@ -37,18 +48,28 @@ class ActivitiesController < ApplicationController
     end
   end
 
-  def map_location
-    # @activity = Activity.find(params[:activity_id])
-    @hash = Gmaps4rails.build_markers(Activity.all) do |activity, marker|
-      marker.lat(activity.location.latitude)
-      marker.lng(activity.location.longitude)
-      marker.infowindow(
-      "<strong>" + "Activity: " + "</strong>" + activity.name + "<br>" + "<strong>" + "Address: " + "</strong>" + activity.location.address + "<br>" + "<strong>" + "Description: " + "</strong>" + activity.description + "<br>" +
-      "<strong>" + "When: " + "</strong>" + activity.next_at.strftime("%B %-d, %Y | %-l:%M%P") + "<br>" +
-      "<strong>" + "Schedule: " + "</strong>" + activity.schedule + "<br>" + "<strong>" + "Website: " + "</strong>" + activity.website)
-    end
-    render json: @hash.to_json
-  end
+  # def map_location
+  #   if params[:location].present?
+  #     @locations = Location.joins(:activities).near(params[:location], params[:distance]) #.where(['activities.next_at > ?', Time.now])
+  #
+  #     @activities = []
+  #     @locations.each do |location|
+  #       @activities += location.activities
+  #     end
+  #   else
+  #     @activities = Activity.all #.where(['activities.next_at > ?', Time.now])
+  #   end
+  #   # @activity = Activity.find(params[:activity_id])
+  #   @hash = Gmaps4rails.build_markers(@activities) do |activity, marker|
+  #     marker.lat(activity.location.latitude)
+  #     marker.lng(activity.location.longitude)
+  #     marker.infowindow(
+  #     "<strong>" + "Activity: " + "</strong>" + activity.name + "<br>" + "<strong>" + "Address: " + "</strong>" + activity.location.address + "<br>" + "<strong>" + "Description: " + "</strong>" + activity.description + "<br>" +
+  #     "<strong>" + "When: " + "</strong>" + activity.next_at.strftime("%B %-d, %Y | %-l:%M%P") + "<br>" +
+  #     "<strong>" + "Schedule: " + "</strong>" + activity.schedule + "<br>" + "<strong>" + "Website: " + "</strong>" + activity.website)
+  #   end
+  #   render json: @hash.to_json
+  # end
 
   # PATCH/PUT /activities/1
   # PATCH/PUT /activities/1.json
