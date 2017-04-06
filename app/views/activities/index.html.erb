@@ -1,5 +1,3 @@
-
-
 <h1>Welcome to FitFinder!</h1>
 <p><strong>A Fitness Group Connector</strong></p>
 <hr>
@@ -60,9 +58,20 @@ Or Search Map by Activity Information
         <td class='requirement'><%= activity.requirement %></td>
         <td class='website'><%= activity.website %></td>
         <td class='pricing'><%= activity.pricing %></td>
+
+        <!--if the current user has a particiaption record that has the activity id of this activity -->
+
+        <% if current_user.participations.where("activity_id = ?", activity.id).count > 0 %>
+        <td id="participate">Active</td>
+        <% else %>
+        <td id="participate"><%= link_to 'Sign Up', "/participant/#{activity.id}", method: :post, data: { confirm: 'Are you sure?' }  %></td>
+        <% end %>
+
         <td><%= link_to 'Show', activity %></td>
+        <% if can? :manage, activity %>
         <td><%= link_to 'Edit', edit_activity_path(activity) %></td>
         <td><%= link_to 'Destroy', activity, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% end %>
       </tr>
     <% end %>
   </tbody>

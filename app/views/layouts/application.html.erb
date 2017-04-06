@@ -33,10 +33,6 @@
 
     <%= yield %>
 
-    <% unless current_user %>
-      
-    <% else %>
-      <%= link_to "Logout", destroy_user_session_path, method: :delete %>
-    <% end %>
+    
   </body>
 </html>

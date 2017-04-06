@@ -16,10 +16,7 @@
     <%= f.text_field :name %>
   </div>
 
-  <div class="field">
-    <%= f.label :user_id %>
-    <%= f.number_field :user_id %>
-  </div>
+  <%= f.hidden_field :user_id, value: current_user.id %>
 
   <div class="field">
     <%= f.label :website %>
@@ -33,7 +30,7 @@
 
   <div class="field">
     <%= f.label :next_at %>
-    <%= f.datetime_select :next_at %>
+    <%= f.datetime_select(:next_at, ampm: true) %>
   </div>
 
   <div class="field">
