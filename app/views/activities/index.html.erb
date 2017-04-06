@@ -14,15 +14,15 @@
   <%= label :location, "From:" %>
   <%= text_field_tag :location, params[:location], placeholder: 'Address, City, State Zip' %>
 
-  <%= submit_tag "Search" %>
+  <%= submit_tag "Search By Distance" %>
 <% end %>
 <br>
 Or Search Map by Activity Information
 <br>
 <%= form_tag(activities_path, :method => "get") do %>
-
+    <%= label :search, "Activity Search:" %>
     <%= text_field_tag :search, params[:search], placeholder: 'Activity Name or Description' %>
-    <%= submit_tag "Search", :name => nil %>
+    <%= submit_tag "Search By Info", :name => nil %>
 
 <% end %>
 <br>
