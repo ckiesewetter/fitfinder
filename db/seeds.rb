@@ -17,3 +17,7 @@ if admin.blank?
   )
 end
 admin.add_role(:admin)
+
+user = User.create!(name: 'Charlie Kiesewetter', password: 'testing123')
+#locaiton = Location.create(location: '')
+#activity = Activity.create(user: user, location: location)
