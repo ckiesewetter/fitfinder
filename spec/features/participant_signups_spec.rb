@@ -3,6 +3,29 @@ require 'rails_helper'
 RSpec.feature "ParticipantSignups", type: :feature do
 
         Steps 'Signing up' do
+          Given 'An Activty' do
+            @location = Location.new
+            @location.name = "LEARN"
+            @location.address = "704 J St."
+            @location.city = "San Diego"
+            @location.state = "CA"
+            @location.zip = "92101"
+            @location.save!
+            @activity = Activity.new
+            @activity.location_id = @location.id
+            @activity.description = "Bowling"
+            @activity.schedule = "San Diego"
+            @activity.user_id = "9"
+            @activity.name = "Rob"
+            @activity.fitness_level = "beginner"
+            @activity.website = "yahoo.com"
+            @activity.pricing = "$5"
+            @activity.save!
+          end
+          Given "The participation count" do
+            @participation_count = Participation.count
+
+          end
           Given 'I click on the sign up link on the homepage and am brought to the sign up page' do
             visit '/users/sign_up'
           end
@@ -29,16 +52,21 @@ RSpec.feature "ParticipantSignups", type: :feature do
           expect(page).to have_content("FitFinder connects like-minded fitness enthusiasts by giving people the ability to create a fitness group or join an existing fitness group.")
           end
           When 'I click on a link I can Sign up for an activity' do
-            @activity = Activity.new
-            @activity.description = "Bowling"
-            @activity.schedule = "San Diego"
-            @activity.user_id = "9"
-            @activity.name = "Rob"
-            @activity.fitness_level = "beginner"
-            @activity.website = "yahoo.com"
-            @activity.pricing = "$5"
-            @activity.save!
+            visit '/'
+            #actually clikc the sing up link
             # click 'Sign Up'
+            click_link_or_button 'Sign Up'
+          end
+          Then 'I should have a new participation and that participation is for the correct activity' do
+            expect(Participation.count).to eq(@participation_count + 1)
+          end
+          And 'I should see a flash message telling me Ive signed up' do
+            expect(page).to have_content("You have successfully signed up to the activity!")
+          end
+          And 'I should see the word "Active" instead of "Sign Up"' do
+            visit "/"
+            expect(page).to have_content("Active")
+            expect(page).to_not have_content("Sign Up")
           end
         end
 
