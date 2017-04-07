@@ -60,7 +60,7 @@ Or Search Map by Activity Information
         <td class='pricing'><%= activity.pricing %></td>
 
         <!--if the current user has a particiaption record that has the activity id of this activity -->
-
+        
         <% if current_user.participations.where("activity_id = ?", activity.id).count > 0 %>
         <td id="participate">Active</td>
         <% else %>
