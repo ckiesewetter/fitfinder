@@ -1,7 +1,13 @@
 
 
-
 <div class="container">
+  <div class="row">
+    <div class="col-sm-12">
+      <div class="show_header">
+        <h1 class="name"><%= @activity.name %></h1>
+      </div>
+    </div>
+  </div>
   <div class="row">
     <div class="col-sm-6">
       <div class="media">
@@ -25,19 +31,19 @@
           <h3 class="media-heading">Location: <%= @activity.location.name %></h3>
           <p>
             <strong>Address:</strong>
-            <%= @activity.location.address %>
+            <%= @activity.location.full_address %>
           </p>
           <p>
-            <strong>City:</strong>
-            <%= @activity.location.city %>
+            <strong>Fitness Level:</strong>
+            <%= @activity.fitness_level %>
           </p>
           <p>
-            <strong>State:</strong>
-            <%= @activity.location.state %>
+            <strong>Pricing:</strong>
+            <%= @activity.pricing %>
           </p>
           <p>
-            <strong>Zip:</strong>
-            <%= @activity.location.zip %>
+            <strong>Requirements:</strong>
+            <%= @activity.requirement %>
           </p>
           <% end %>
         </div>
@@ -62,11 +68,9 @@
           </div>
         </div>
         <div class="media-body">
-          <h3 class="media-heading">Organizer: <%= @activity.name %></h3>
-          <p>
-            <strong>User:</strong>
-            <%= @activity.user_id %>
-          </p>
+          <h3 class="media-heading">Organizer: <%= @activity.organizer_name %>
+          </h3>
+
           <p>
             <strong>Website:</strong>
             <%= link_to @activity.website, @activity.website, target: '_blank' %>
@@ -80,12 +84,12 @@
             <%= @activity.next_at.strftime("%B %-d, %Y | %l:%M %P") %>
           </p>
           <p>
-            <strong>Location:</strong>
-            <%= @activity.location.name %>
-          </p>
-          <p>
             <strong>Schedule:</strong>
             <%= @activity.schedule %>
+          </p>
+          <p>
+            <strong>Contact:</strong>
+            <a href='mailto:<%= @activity.organizer_email %>'><%= @activity.organizer_email %></a>
           </p>
         </div>
       </div>
