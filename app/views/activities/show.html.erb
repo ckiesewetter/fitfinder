@@ -1,80 +1,102 @@
 
 
 
-<div class="row">
-  <div class="col-sm-6">
-    <div class="media">
-      <div class="media-left">
-        <a href="#">
-          <img class="thumbnail" src="http://placehold.it/64x64" alt="...">
-        </a>
-      </div>
-      <div class="media-body">
-        <% if @activity.location %>
-        <h3 class="media-heading">Location: <%= @activity.location.name %></h3>
-        <p>
-          <strong>Address:</strong>
-          <%= @activity.location.address %>
-        </p>
-        <p>
-          <strong>City:</strong>
-          <%= @activity.location.city %>
-        </p>
-        <p>
-          <strong>State:</strong>
-          <%= @activity.location.state %>
-        </p>
-        <p>
-          <strong>Zip:</strong>
-          <%= @activity.location.zip %>
-        </p>
-        <% end %>
+<div class="container">
+  <div class="row">
+    <div class="col-sm-6">
+      <div class="media">
+        <div class="media-left">
+          <a href="#" class="pop">
+            <img class="thumbnail" src="http://placehold.it/64x64" alt="..." style="width: 75px; height 75px;">
+          </a>
+          <div class="modal fade" id="imagemodal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-body">
+                  <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                  <img src="" class="imagepreview" style="width: 100%;" >
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="media-body">
+          <% if @activity.location %>
+          <h3 class="media-heading">Location: <%= @activity.location.name %></h3>
+          <p>
+            <strong>Address:</strong>
+            <%= @activity.location.address %>
+          </p>
+          <p>
+            <strong>City:</strong>
+            <%= @activity.location.city %>
+          </p>
+          <p>
+            <strong>State:</strong>
+            <%= @activity.location.state %>
+          </p>
+          <p>
+            <strong>Zip:</strong>
+            <%= @activity.location.zip %>
+          </p>
+          <% end %>
+        </div>
       </div>
     </div>
-  </div>
 
-  <div class="col-sm-6">
-    <div class="media">
-      <div class="media-left">
-        <a href="#">
-          <img class="thumbnail" src="http://placehold.it/64x64" alt="...">
-        </a>
-      </div>
-      <div class="media-body">
-        <h3 class="media-heading">Organizer: <%= @activity.name %></h3>
-        <p>
-          <strong>User:</strong>
-          <%= @activity.user_id %>
-        </p>
-        <p>
-          <strong>Website:</strong>
-          <%= @activity.website %>
-        </p>
-        <p>
-          <strong>Description:</strong>
-          <%= @activity.description %>
-        </p>
-        <p>
-          <strong>Next at:</strong>
-          <%= @activity.next_at.try(:strftime, "%B %-d, %Y | %l:%M %P") %>
-        </p>
-        <p>
-          <strong>Location:</strong>
-          <%= @activity.location.name %>
-        </p>
-        <p>
-          <strong>Schedule:</strong>
-          <%= @activity.schedule %>
-        </p>
+    <div class="col-sm-6">
+      <div class="media">
+        <div class="media-left">
+          <a href="#" class="pop">
+            <img class="thumbnail" src="http://placehold.it/64x64" alt="..." style="width: 75px; height 75px;">
+          </a>
+          <div class="modal fade" id="imagemodal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-body">
+                  <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                  <img src="" class="imagepreview" style="width: 100%;" >
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="media-body">
+          <h3 class="media-heading">Organizer: <%= @activity.name %></h3>
+          <p>
+            <strong>User:</strong>
+            <%= @activity.user_id %>
+          </p>
+          <p>
+            <strong>Website:</strong>
+            <%= link_to @activity.website, @activity.website, target: '_blank' %>
+          </p>
+          <p>
+            <strong>Description:</strong>
+            <%= @activity.description %>
+          </p>
+          <p>
+            <strong>Next at:</strong>
+            <%= @activity.next_at.strftime("%B %-d, %Y | %l:%M %P") %>
+          </p>
+          <p>
+            <strong>Location:</strong>
+            <%= @activity.location.name %>
+          </p>
+          <p>
+            <strong>Schedule:</strong>
+            <%= @activity.schedule %>
+          </p>
+        </div>
       </div>
     </div>
-  </div>
     <p>
-    <%= link_to 'Edit', edit_activity_path(@activity) %> |
-    <%= link_to 'Back', activities_path %>
+      <%= link_to 'Edit', edit_activity_path(@activity) %> |
+      <%= link_to 'Back', activities_path %>
     </p>
-</div>
+  </div>
 
-<div class="row">
-  <div class="col-sm-12" id="activity_map" data-activity-id="<%= @activity.id %>">Google Map will Appear Here</div>
+  <div class="row">
+    <div class="col-sm-12" id="activity_map" data-activity-id="<%= @activity.id %>">Google Map will Appear Here</div>
+  </div>
 </div>
