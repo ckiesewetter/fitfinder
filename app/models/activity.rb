@@ -4,7 +4,14 @@ class Activity < ApplicationRecord
 
   def organizer_name
     if self.user.present?
-      "#{self.user.name}"  
+      "#{self.user.name}"
+    else
+      "Unknown"
+    end
+  end
+  def organizer_email
+    if self.user.present?
+      "#{self.user.email}"
     else
       "Unknown"
     end
