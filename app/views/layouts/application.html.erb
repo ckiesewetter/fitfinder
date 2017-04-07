@@ -18,21 +18,23 @@
   </head>
 
   <body>
-  <p>
-    <!-- Add to Bootstrap header so is persistent across all pages -->
-    <% if controller.class.to_s.match('Devise') %>
-    <% elsif current_user.nil? %>
-      <%= link_to 'Log In', user_session_path, :id => "sign_in" %>
-    <% else  %>
-      <%= link_to 'Sign Out', destroy_user_session_path, :method => :delete %>
-    <% end %>
-  </p>
-
+    <p>
+      <!-- Add to Bootstrap header so is persistent across all pages -->
+      <% if controller.class.to_s.match('Devise') %>
+      <% elsif current_user.nil? %>
+        <%= link_to 'Log In', user_session_path, :id => "sign_in" %>
+      <% else  %>
+        <%= link_to 'Sign Out', destroy_user_session_path, :method => :delete %>
+      <% end %>
+    </p>
+    <p>
+      <%= link_to 'Profile', profile_path, :method => :get %>
+    </p>
     <p class="notice"><%= notice %></p>
     <p class="alert"><%= alert %></p>
 
     <%= yield %>
 
-    
+
   </body>
 </html>

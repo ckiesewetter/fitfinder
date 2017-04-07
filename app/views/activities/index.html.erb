@@ -66,7 +66,6 @@ Or Search Map by Activity Information
         <% else %>
         <td id="participate"><%= link_to 'Sign Up', "/participant/#{activity.id}", method: :post, data: { confirm: 'Are you sure?' }  %></td>
         <% end %>
-
         <td><%= link_to 'Show', activity %></td>
         <% if can? :manage, activity %>
         <td><%= link_to 'Edit', edit_activity_path(activity) %></td>
@@ -79,5 +78,5 @@ Or Search Map by Activity Information
 
 <br>
 
+<%= link_to 'Profile', profile_path %>
 <%= link_to 'New Activity', new_activity_path %>
-<%= link_to 'Show Activity' %>

@@ -107,7 +107,10 @@ class ActivitiesController < ApplicationController
     render json: @hash.to_json
   end
 
+  def profile
 
+  end
+  
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_activity
