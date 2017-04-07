@@ -1,10 +1,10 @@
 
 
-<div class="container">
+<div class="container activity" data-lat='<%= @activity.location.latitude %>' data-lng='<%= @activity.location.longitude %>'>
   <div class="row">
     <div class="col-sm-12">
       <div class="show_header">
-        <h1 class="name"><%= @activity.name %></h1>
+        <h1 class="name"><span class='name'><%= @activity.name %></span></h1>
       </div>
     </div>
   </div>
@@ -27,8 +27,9 @@
           </div>
         </div>
         <div class="media-body">
+          <div>
           <% if @activity.location %>
-          <h3 class="media-heading">Location: <%= @activity.location.name %></h3>
+          <h3 class="media-heading">Location: <span class="location"><%= @activity.location.name %></span></h3>
           <p>
             <strong>Address:</strong>
             <%= @activity.location.full_address %>
@@ -49,6 +50,7 @@
         </div>
       </div>
     </div>
+  </div>
 
     <div class="col-sm-6">
       <div class="media">
@@ -73,19 +75,19 @@
 
           <p>
             <strong>Website:</strong>
-            <%= link_to @activity.website, @activity.website, target: '_blank' %>
+            <span class='website'><%= link_to @activity.website, @activity.website, target: '_blank' %></span>
           </p>
           <p>
             <strong>Description:</strong>
-            <%= @activity.description %>
+            <span class='description'><%= @activity.description %></span>
           </p>
           <p>
-            <strong>Next at:</strong>
-            <%= @activity.next_at.strftime("%B %-d, %Y | %l:%M %P") %>
+            <strong>When:</strong>
+            <span class='next_at'><%= @activity.next_at.strftime("%B %-d, %Y | %l:%M %P") %></span>
           </p>
           <p>
             <strong>Schedule:</strong>
-            <%= @activity.schedule %>
+            <span class='schedule'><%= @activity.schedule %></span>
           </p>
           <p>
             <strong>Contact:</strong>
