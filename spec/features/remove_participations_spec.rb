@@ -50,7 +50,6 @@ RSpec.feature "RemoveParticipations", type: :feature do
     end
     Then "I go back to the landing page" do
       click_link "Back"
-      save_and_open_page
     end
     When "I check the landing page" do
       expect(page).to have_content("Sign Up")
