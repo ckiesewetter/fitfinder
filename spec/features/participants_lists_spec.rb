@@ -45,11 +45,10 @@ RSpec.feature "ParticipantsLists", type: :feature do
         end
         Then 'I can see a link to sign up for an activity' do
         expect(page).to have_content("Welcome! You have signed up successfully.")
-        expect(page).to have_content("FitFinder connects like-minded fitness enthusiasts by giving people the ability to create a fitness group or join an existing fitness group.")
+        expect(page).to have_content("FindFit connects like-minded fitness enthusiasts by giving people the ability to create a fitness group or join an existing fitness group.")
         end
         When 'I click on a link I can Sign up for an activity' do
           visit '/'
-
           #actually clikc the sing up link
           # click 'Sign Up'
           click_link 'Sign Up'
@@ -62,7 +61,7 @@ RSpec.feature "ParticipantsLists", type: :feature do
         end
         Then 'I should see the word "Active" instead of "Sign Up"' do
           visit "/"
-          expect(page).to have_content("Active")
+          expect(page).to have_content("Remove")
           expect(page).to_not have_content("Sign Up")
         end
         When 'I click on the link Click To View My Activities' do

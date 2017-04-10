@@ -28,6 +28,7 @@ RSpec.feature "MapMarkerDisplays", type: :feature do
         fill_in 'Schedule', with: 'M-F'
         fill_in 'Requirement', with: 'Bring shoes'
         fill_in 'Pricing', with: '$5'
+        check('Terms of service')
         click_button 'Create Activity'
       end
       Then "I can go back to the Activities page" do
