@@ -1,5 +1,5 @@
-<h1>Welcome to FindFit!</h1>
 <p><strong>A Fitness Group Connector</strong></p>
+<h1>Welcome to FindFit!</h1>
 <hr>
 
 <div class="row">
@@ -27,7 +27,7 @@
     <% end %>
     <br>
     <%= form_tag(activities_path, :method => "get") do %>
-        <%= submit_tag "Click To View My Activities", name: "mine" %>
+        <%= submit_tag "Click To View My Activities", name: "mine", class: 'view-activities' %>
     <% end %>
 
     <%= form_tag(activities_path, :method => "get") do %>
@@ -83,5 +83,5 @@
 
 <br>
 
-<%= link_to 'Profile', profile_path %>
+<%= link_to 'Profile', profile_path %> |
 <%= link_to 'New Activity', new_activity_path %>

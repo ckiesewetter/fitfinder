@@ -16,52 +16,14 @@
   </head>
 
   <body id="<%= controller_name %>-<%= action_name %>" class="<%= controller_name %> <%= action_name %>">
-    <div class="hidden-xs">
-      <div class="logo-container">
-        <a class="navbar-brand" href="#">
-          <%= image_tag "find-fit-logo.png", alt: 'Find Fit' %>
-        </a>
-      </div>
-
-      <div class="nav-container">
-        <nav class="navbar navbar-default">
-        <div class="container-fluid">
-          <!-- Brand and toggle get grouped for better mobile display -->
-          <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-              <span class="sr-only">Toggle navigation</span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-            </button>
-          </div>
-
-          <!-- Collect the nav links, forms, and other content for toggling -->
-            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-              <ul class="nav navbar-nav">
-                <li class="active"><a href="#">About<span class="sr-only">(current)</span></a></li>
-                <li><a href="#">Contact</a></li>
-              </ul>
-            </div><!-- /.navbar-collapse -->
-          </div><!-- /.container-fluid -->
-        </nav>
-      </div>
-    </div>
-
-    <div class="visible-xs-block">
-      <div class="row">
-        <div class="col-sm-12">
-          <div class="logo-container-xs">
-            <a class="navbar-brand" href="#">
-              <%= image_tag "find-fit-logo.png", alt: 'Find Fit' %>
-            </a>
-          </div>
+      <div class="hidden-xs">
+        <div class="logo-container">
+          <a class="navbar-brand" href="#">
+            <%= image_tag "find-fit-logo.png", alt: 'Find Fit' %>
+          </a>
         </div>
-      </div>
 
-      <div class="row">
-        <div class="col-sm-12">
-          <div class="nav-container-xs">
+        <div class="nav-container">
           <nav class="navbar navbar-default">
           <div class="container-fluid">
             <!-- Brand and toggle get grouped for better mobile display -->
@@ -80,30 +42,79 @@
                   <li class="active"><a href="#">About<span class="sr-only">(current)</span></a></li>
                   <li><a href="#">Contact</a></li>
                 </ul>
+                <ul class="nav navbar-nav navbar-right">
+                  <li>
+                    <!-- Add to Bootstrap header so is persistent across all pages -->
+                    <% if controller.class.to_s.match('Devise') %>
+                    <% elsif current_user.nil? %>
+                      <%= link_to 'Log In', user_session_path, :id => "sign_in" %>
+                    <% else  %>
+                      <%= link_to 'Sign Out', destroy_user_session_path, :method => :delete %>
+                    <% end %>
+                  </li>
+                </ul>
               </div><!-- /.navbar-collapse -->
             </div><!-- /.container-fluid -->
           </nav>
         </div>
       </div>
+
+      <div class="visible-xs-block">
+        <div class="row">
+          <div class="col-sm-12">
+            <div class="logo-container-xs">
+              <a class="navbar-brand" href="#">
+                <%= image_tag "find-fit-logo.png", alt: 'Find Fit' %>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-sm-12">
+            <div class="nav-container-xs">
+            <nav class="navbar navbar-default">
+            <div class="container-fluid">
+              <!-- Brand and toggle get grouped for better mobile display -->
+              <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                  <span class="sr-only">Toggle navigation</span>
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+                </button>
+              </div>
+
+              <!-- Collect the nav links, forms, and other content for toggling -->
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                  <ul class="nav navbar-nav">
+                    <li class="active"><a href="#">About<span class="sr-only">(current)</span></a></li>
+                    <li><a href="#">Contact</a></li>
+                  </ul>
+                  <ul class="nav navbar-nav navbar-right">
+                    <li>
+                      <!-- Add to Bootstrap header so is persistent across all pages -->
+                      <% if controller.class.to_s.match('Devise') %>
+                      <% elsif current_user.nil? %>
+                        <%= link_to 'Log In', user_session_path, :id => "sign_in" %>
+                      <% else  %>
+                        <%= link_to 'Sign Out', destroy_user_session_path, :method => :delete %>
+                      <% end %>
+                    </li>
+                  </ul>
+                </div><!-- /.navbar-collapse -->
+              </div><!-- /.container-fluid -->
+            </nav>
+          </div>
+        </div>
+      </div>
     </div>
-  </div>
 
-  <div class="container-fluid">
-  <p>
-    <!-- Add to Bootstrap header so is persistent across all pages -->
-    <% if controller.class.to_s.match('Devise') %>
-    <% elsif current_user.nil? %>
-      <%= link_to 'Log In', user_session_path, :id => "sign_in" %>
-    <% else  %>
-      <%= link_to 'Sign Out', destroy_user_session_path, :method => :delete %>
-    <% end %>
-  </p>
+    <div class="container-fluid">
+      <div class="notice"><%= notice %></div>
+      <div class="alert"><%= alert %></div>
+      <%= yield %>
+    </div>
 
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
-
-    <%= yield %>
-
-  </div>
   </body>
 </html>
