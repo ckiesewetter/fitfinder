@@ -1,12 +1,13 @@
 class ActivitiesController < ApplicationController
   before_action :set_activity, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!
+
   load_and_authorize_resource
   # GET /activities
   # GET /activities.json
   def index
     if params[:location].present?
-      @locations = Location.joins(:activities).near(params[:location], params[:distance], :units => :mi) #.where(['activities.next_at > ?', Time.now])
+      @locations = Location.joins(:activities).near(params[:location], params[:distance], :units => :mi)  #.where(['activities.next_at > ?', Time.now])
 
       @activities = []
       @locations.each do |location|
@@ -14,6 +15,11 @@ class ActivitiesController < ApplicationController
       end
     elsif params[:search].present?
       @activities = Activity.search(params[:search])
+    elsif params[:mine].present?
+      #TODO laod the activities you are signed up for only
+      @activities = current_user.participating_activities.where("next_at >= ?", 1.hour.ago)
+    elsif params[:my_past].present?
+      @activities = current_user.participating_activities.where("next_at < ?", 1.hour.ago)
     else
       @activities = Activity.all #.where(['activities.next_at > ?', Time.now])
     end
@@ -22,6 +28,8 @@ class ActivitiesController < ApplicationController
   # GET /activities/1
   # GET /activities/1.json
   def show
+    @activity = Activity.find(params[:id])
+    @participant = User.joins(:participations).where("activity_id = ?", @activity.id)
   end
 
   # GET /activities/new
@@ -49,31 +57,9 @@ class ActivitiesController < ApplicationController
     end
   end
 
-  # def map_location
-  #   if params[:location].present?
-  #     @locations = Location.joins(:activities).near(params[:location], params[:distance]) #.where(['activities.next_at > ?', Time.now])
-  #
-  #     @activities = []
-  #     @locations.each do |location|
-  #       @activities += location.activities
-  #     end
-  #   else
-  #     @activities = Activity.all #.where(['activities.next_at > ?', Time.now])
-  #   end
-  #   # @activity = Activity.find(params[:activity_id])
-  #   @hash = Gmaps4rails.build_markers(@activities) do |activity, marker|
-  #     marker.lat(activity.location.latitude)
-  #     marker.lng(activity.location.longitude)
-  #     marker.infowindow(
-  #     "<strong>" + "Activity: " + "</strong>" + activity.name + "<br>" + "<strong>" + "Address: " + "</strong>" + activity.location.address + "<br>" + "<strong>" + "Description: " + "</strong>" + activity.description + "<br>" +
-  #     "<strong>" + "When: " + "</strong>" + activity.next_at.strftime("%B %-d, %Y | %-l:%M%P") + "<br>" +
-  #     "<strong>" + "Schedule: " + "</strong>" + activity.schedule + "<br>" + "<strong>" + "Website: " + "</strong>" + activity.website)
-  #   end
-  #   render json: @hash.to_json
-  # end
-
   # PATCH/PUT /activities/1
   # PATCH/PUT /activities/1.json
+
   def update
     respond_to do |format|
       if @activity.update(activity_params)
@@ -105,6 +91,9 @@ class ActivitiesController < ApplicationController
       marker.infowindow("<strong>" + activity.name + "</strong><br><em>" + activity.location.address + "</em><br>")
     end
     render json: @hash.to_json
+  end
+
+  def profile
   end
 
   private
