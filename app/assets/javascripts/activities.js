@@ -17,7 +17,7 @@ function loadAndCreateGmap() {
     map = new google.maps.Map(document.getElementById('activity_map'), {
       center: location,
       scrollwheel: false,
-      zoom: 12,
+      zoom: 12
     });
 
     infoWindow = new google.maps.InfoWindow();
