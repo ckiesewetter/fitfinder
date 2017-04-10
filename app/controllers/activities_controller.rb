@@ -16,9 +16,9 @@ class ActivitiesController < ApplicationController
       @activities = Activity.search(params[:search])
     elsif params[:mine].present?
       #TODO laod the activities you are signed up for only
-      @activities = current_user.participating_activities.where("next_at <= ?", 1.hour.ago)
+      @activities = current_user.participating_activities.where("next_at >= ?", 1.hour.ago)
     elsif params[:my_past].present?
-      @activities = current_user.participating_activities.where("next_at > ?", 1.hour.ago)
+      @activities = current_user.participating_activities.where("next_at < ?", 1.hour.ago)
     else
       @activities = Activity.all #.where(['activities.next_at > ?', Time.now])
     end

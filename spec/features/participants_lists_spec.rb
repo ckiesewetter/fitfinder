@@ -60,18 +60,17 @@ RSpec.feature "ParticipantsLists", type: :feature do
         And 'I should see a flash message telling me Ive signed up' do
           expect(page).to have_content("You have successfully signed up to the activity!")
         end
-        And 'I should see the word "Active" instead of "Sign Up"' do
+        Then 'I should see the word "Active" instead of "Sign Up"' do
           visit "/"
           expect(page).to have_content("Active")
           expect(page).to_not have_content("Sign Up")
         end
         When 'I click on the link Click To View My Activities' do
           click_button ("Click To View My Activities")
+        end
+        When 'I click on the link Click To View My Past Activities' do
           click_button ("Click To View My Past Activities")
+          save_and_open_page
         end
-         expect(page).to have_content("Welcome To Fit Finder")
-        save_and_open_page
-        end
-
-
-        end
+end
+end
