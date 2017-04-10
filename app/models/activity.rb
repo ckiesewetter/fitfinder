@@ -1,6 +1,7 @@
 class Activity < ApplicationRecord
   belongs_to :location, optional: true
   belongs_to :user, optional: true
+  validates :terms_of_service, acceptance: true
 
   def organizer_name
     if self.user.present?
