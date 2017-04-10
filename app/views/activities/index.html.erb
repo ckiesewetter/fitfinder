@@ -1,8 +1,8 @@
-<h1>Welcome to FitFinder!</h1>
+<h1>Welcome to FindFit!</h1>
 <p><strong>A Fitness Group Connector</strong></p>
 <hr>
-<h3>What is FitFinder?</h3>
-<p>FitFinder connects like-minded fitness enthusiasts by giving people the ability to create a fitness group or join an existing fitness group.</p>
+<h3>What is FindFit?</h3>
+<p>FindFit connects like-minded fitness enthusiasts by giving people the ability to create a fitness group or join an existing fitness group.</p>
 
 <%= form_tag(activities_path, :method => "get") do %>
   Search Map by Distance
@@ -21,11 +21,15 @@ Or Search Map by Activity Information
     <%= label :search, "Activity Search:" %>
     <%= text_field_tag :search, params[:search], placeholder: 'Activity' %>
     <%= submit_tag "Search By Info", :name => nil %>
-
 <% end %>
 <br>
+<%= form_tag(activities_path, :method => "get") do %>
+    <%= submit_tag "Click To View My Activities", name: "mine" %>
+<% end %>
 
-
+<%= form_tag(activities_path, :method => "get") do %>
+    <%= submit_tag "Click To View My Past Activities", name: "my_past" %>
+<% end %>
 
 <div id="activity_map" data-activity-id="0">Google Map will Appear Here</div>
 
@@ -60,13 +64,12 @@ Or Search Map by Activity Information
         <td class='pricing'><%= activity.pricing %></td>
 
         <!--if the current user has a particiaption record that has the activity id of this activity -->
-
+        
         <% if current_user.participations.where("activity_id = ?", activity.id).count > 0 %>
-        <td id="participate">Active</td>
+        <td id="participate"><%= link_to 'Remove', "/participant/#{activity.id}", method: :delete, data: { confirm: 'Are you sure?' }  %></td>
         <% else %>
-        <td id="participate"><%= link_to 'Sign Up', "/participant/#{activity.id}", method: :post, data: { confirm: 'Are you sure?' }  %></td>
+        <td id="participate" class="sign_up"><%= link_to 'Sign Up', "/participant/#{activity.id}", method: :post, data: { confirm: 'Are you sure?' }  %></td>
         <% end %>
-
         <td><%= link_to 'Show', activity %></td>
         <% if can? :manage, activity %>
         <td><%= link_to 'Edit', edit_activity_path(activity) %></td>
@@ -79,4 +82,5 @@ Or Search Map by Activity Information
 
 <br>
 
+<%= link_to 'Profile', profile_path %>
 <%= link_to 'New Activity', new_activity_path %>
