@@ -20,8 +20,8 @@ RSpec.feature "NewActivities", type: :feature do
         fill_in 'Password', with: 'curiousmonkey'
         click_button 'Log in'
       end
-      Then "I see Welcome to FitFinder" do
-        expect(page).to have_content("FitFinder")
+      Then "I see Welcome to FindFit" do
+        expect(page).to have_content("FindFit")
       end
       When "I can click the new activity link" do
         click_link 'New Activity'
