@@ -1,6 +1,7 @@
 class ActivitiesController < ApplicationController
   before_action :set_activity, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!
+
   load_and_authorize_resource
   # GET /activities
   # GET /activities.json
@@ -49,28 +50,6 @@ class ActivitiesController < ApplicationController
     end
   end
 
-  # def map_location
-  #   if params[:location].present?
-  #     @locations = Location.joins(:activities).near(params[:location], params[:distance]) #.where(['activities.next_at > ?', Time.now])
-  #
-  #     @activities = []
-  #     @locations.each do |location|
-  #       @activities += location.activities
-  #     end
-  #   else
-  #     @activities = Activity.all #.where(['activities.next_at > ?', Time.now])
-  #   end
-  #   # @activity = Activity.find(params[:activity_id])
-  #   @hash = Gmaps4rails.build_markers(@activities) do |activity, marker|
-  #     marker.lat(activity.location.latitude)
-  #     marker.lng(activity.location.longitude)
-  #     marker.infowindow(
-  #     "<strong>" + "Activity: " + "</strong>" + activity.name + "<br>" + "<strong>" + "Address: " + "</strong>" + activity.location.address + "<br>" + "<strong>" + "Description: " + "</strong>" + activity.description + "<br>" +
-  #     "<strong>" + "When: " + "</strong>" + activity.next_at.strftime("%B %-d, %Y | %-l:%M%P") + "<br>" +
-  #     "<strong>" + "Schedule: " + "</strong>" + activity.schedule + "<br>" + "<strong>" + "Website: " + "</strong>" + activity.website)
-  #   end
-  #   render json: @hash.to_json
-  # end
 
   # PATCH/PUT /activities/1
   # PATCH/PUT /activities/1.json
