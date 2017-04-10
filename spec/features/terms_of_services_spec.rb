@@ -29,8 +29,6 @@ RSpec.feature "TermsOfServices", type: :feature do
       end
       When 'I fill in the form without selecting the terms of service button' do
         fill_in 'Name', with: 'Wind Sprints'
-        # Using @user.id instead of an actual id like 1 tells the virtual db to use whatever rspec is using for the id.
-        # fill_in 'User', with: @user.id
         fill_in 'Website', with: 'www.google.com'
         fill_in 'Description', with: 'Run fast'
         fill_in 'Location', with: @location.id
@@ -48,7 +46,6 @@ RSpec.feature "TermsOfServices", type: :feature do
       end
       Then 'I can see that an activity was successfully created' do
         expect(page).to have_content("Activity was successfully created.")
-        save_and_open_page
       end
     end
   end
