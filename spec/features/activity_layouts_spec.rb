@@ -39,7 +39,7 @@ RSpec.feature "ActivityLayouts", type: :feature do
         visit "/activities"
       end
       Then "I see page title" do
-        expect(page).to have_content("Welcome to FitFinder")
+        expect(page).to have_content("Welcome to FindFit")
       end
       When "I click the Show text link" do
         click_link 'Show'

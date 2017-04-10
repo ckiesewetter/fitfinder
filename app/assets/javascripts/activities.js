@@ -18,6 +18,7 @@ function loadAndCreateGmap() {
       center: location,
       scrollwheel: false,
       zoom: 12,
+      styles: [{"featureType":"water","stylers":[{"visibility":"on"},{"color":"#6B7A8F"}]},{"featureType":"landscape","stylers":[{"color":"#DCC7AA"}]},{"featureType":"road.highway","elementType":"geometry","stylers":[{"color":"#F7882F"}]},{"featureType":"road.arterial","elementType":"geometry","stylers":[{"color":"#F7C331"}]},{"featureType":"road.local","elementType":"geometry","stylers":[{"color":"#ffffff"}]},{"featureType":"poi.park","elementType":"geometry","stylers":[{"color":"#e3eed3"}]},{"featureType":"administrative","stylers":[{"visibility":"on"},{"lightness":33}]},{"featureType":"road"},{"featureType":"poi.park","elementType":"labels","stylers":[{"visibility":"on"},{"lightness":20}]},{},{"featureType":"road","stylers":[{"lightness":20}]}]
     });
 
     infoWindow = new google.maps.InfoWindow();

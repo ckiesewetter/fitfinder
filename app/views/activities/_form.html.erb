@@ -58,7 +58,10 @@
     <%= f.text_field :pricing %>
   </div>
 
-  <div class="actions">
+  <div class="actions terms">
+    <%= f.label :terms_of_service %>
+    <%= f.check_box :terms_of_service %> By agreeing to FindFits terms of service, FindFit is granted the right to use, reproduce, publish, translate and distribute your content in any existing and future media.  You also grant FindFit the right to sub-license these rights, and the right to bring an action for infringement of these rights.</span>
+    <br><br>
     <%= f.submit %>
   </div>
 <% end %>
