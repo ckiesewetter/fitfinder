@@ -62,7 +62,6 @@ RSpec.feature "CancancanRolifies", type: :feature do
         expect(page).to_not have_content("Edit")
         expect(page).to_not have_content("Destroy")
       end
-      save_and_open_page
     end
   end
 end
