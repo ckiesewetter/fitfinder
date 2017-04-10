@@ -105,4 +105,35 @@
   <div class="row">
     <div class="col-sm-12" id="activity_map" data-activity-id="<%= @activity.id %>">Google Map will Appear Here</div>
   </div>
+
+  <% if current_user.id == @activity.user_id %>
+  <div class="row">
+    <div class="col-sm-12" id="participant_list">
+      <h3>Participants In Your Activity</h3>
+      <table>
+        <thead>
+          <tr>
+            <th></th>
+            <th>Name</th>
+            <th>Email</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <% @participant.each do |participant| %>
+            <tr>
+              <td>
+                <% unless participant.image.blank? %>
+                  <img class="participant_image" src="<%= participant.image %>" alt="">
+                <% end %>
+              </td>
+              <td><%= participant.first_name %></td>
+              <td><%= participant.email %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+  </div>
+  <% end %>
+
 </div>
