@@ -1,6 +1,7 @@
 class ActivitiesController < ApplicationController
   before_action :set_activity, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!
+
   load_and_authorize_resource
   # GET /activities
   # GET /activities.json
@@ -53,6 +54,9 @@ class ActivitiesController < ApplicationController
       end
     end
   end
+
+  # PATCH/PUT /activities/1
+  # PATCH/PUT /activities/1.json
 
   def update
     respond_to do |format|

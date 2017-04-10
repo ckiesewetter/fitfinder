@@ -83,7 +83,7 @@
           </p>
           <p>
             <strong>When:</strong>
-            <span class='next_at'><%= @activity.next_at.strftime("%B %-d, %Y | %l:%M %P") %></span>
+            <span class='next_at'><%= @activity.next_at.try(:strftime, "%B %-d, %Y | %l:%M %P") %></span>
           </p>
           <p>
             <strong>Schedule:</strong>

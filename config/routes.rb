@@ -21,4 +21,5 @@ Rails.application.routes.draw do
   # POST for adding a user/participant to an activity.
   post '/participant/:activity_id' => 'participant#create'
   post '/participant/user'
+  delete '/participant/:activity_id' => 'participant#destroy'
 end

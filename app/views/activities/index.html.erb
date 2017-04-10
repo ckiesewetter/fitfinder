@@ -64,9 +64,9 @@ Or Search Map by Activity Information
         <td class='pricing'><%= activity.pricing %></td>
 
         <!--if the current user has a particiaption record that has the activity id of this activity -->
-
+        
         <% if current_user.participations.where("activity_id = ?", activity.id).count > 0 %>
-        <td id="participate" class="active">Active</td>
+        <td id="participate"><%= link_to 'Remove', "/participant/#{activity.id}", method: :delete, data: { confirm: 'Are you sure?' }  %></td>
         <% else %>
         <td id="participate" class="sign_up"><%= link_to 'Sign Up', "/participant/#{activity.id}", method: :post, data: { confirm: 'Are you sure?' }  %></td>
         <% end %>
