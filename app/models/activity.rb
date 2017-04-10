@@ -15,5 +15,6 @@ class Activity < ApplicationRecord
     else
       "Unknown"
     end
+    
   end
 end
