@@ -70,7 +70,6 @@ RSpec.feature "ParticipantsLists", type: :feature do
         end
         When 'I click on the link Click To View My Past Activities' do
           click_button ("Click To View My Past Activities")
-          save_and_open_page
         end
 end
 end
