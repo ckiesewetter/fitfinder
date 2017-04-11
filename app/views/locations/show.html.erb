@@ -1,4 +1,10 @@
 <p>
+  <% unless @location.image.blank? %>
+    <img class="location_show_image" src="<%= @location.image %>" alt="">
+  <% end %>
+</p>
+
+<p>
   <strong>Name:</strong>
   <%= @location.name %>
 </p>
