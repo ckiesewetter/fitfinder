@@ -12,7 +12,7 @@ class User < ApplicationRecord
   # provides support for paperclip for the user avatar.
   has_attached_file :image, styles: { small: "64x64", med: "100x100", large: "200x200" }
 
-  # This validation requres that Users attach an avatar photo upon creation.
+
   validates_attachment :image,
     content_type: { content_type: ["image/jpg", "image/jpeg", "image/png", "image/gif"] },
     size: { in: 0..10.megabytes }
@@ -33,8 +33,7 @@ class User < ApplicationRecord
     where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
       user.email = auth.info.email
       user.password = Devise.friendly_token[0,20]
-      user.first_name = auth.info.first_name   # assuming the user model has a first_name
-      user.last_name = auth.info.last_name # assuming the user model has a last_name
+      user.first_name = auth.info.name   # assuming the user model has a first_name
       # user.image = auth.info.image # assuming the user model has an image
       user.save!
     end
