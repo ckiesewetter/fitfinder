@@ -2,6 +2,12 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+// font-family: 'Oswald', sans-serif;
+
+body {
+  font-family: 'Quattrocento', serif;
+}
+
 #sessions-new nav.navbar.navbar-default {
     display: none;
 }
@@ -9,6 +15,14 @@
 .logo-container .navbar-brand:hover,
 .logo-container-xs .navbar-brand:hover {
   background-color: transparent;
+}
+
+body#sessions-new {
+  background: image-url("find-fit-bg.jpg") no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
 }
 
 .nav-container {
