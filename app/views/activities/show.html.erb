@@ -8,7 +8,7 @@
       </div>
     </div>
   </div>
-  <div class="row info_row">
+  <div class="row">
     <div class="col-sm-6">
       <div class="media">
         <div class="media-left">
@@ -26,23 +26,23 @@
             </div>
           </div>
         </div>
-        <div class="media-body">
+        <div class="media-body activity-info">
           <div>
           <% if @activity.location %>
-          <h3 class="media-heading">Location: <span class="location"><%= @activity.location.name %></span></h3>
-          <p>
+          <h3 class="media-heading activity-info-text">Location: <span class="location"><%= @activity.location.name %></span></h3>
+          <p class="activity-info-text">
             <strong>Address:</strong>
             <%= @activity.location.full_address %>
           </p>
-          <p>
+          <p class="activity-info-text">
             <strong>Fitness Level:</strong>
             <%= @activity.fitness_level %>
           </p>
-          <p>
+          <p class="activity-info-text">
             <strong>Pricing:</strong>
             <%= @activity.pricing %>
           </p>
-          <p>
+          <p class="activity-info-text">
             <strong>Requirements:</strong>
             <%= @activity.requirement %>
           </p>
@@ -69,27 +69,26 @@
             </div>
           </div>
         </div>
-        <div class="media-body">
-          <h3 class="media-heading">Organizer: <%= @activity.organizer_name %>
+        <div class="media-body activity-info">
+          <h3 class="media-heading activity-info-text">Organizer: <%= @activity.organizer_name %>
           </h3>
-
-          <p>
+          <p class="activity-info-text">
             <strong>Website:</strong>
             <span class='website'><%= link_to @activity.website, @activity.website, target: '_blank' %></span>
           </p>
-          <p>
+          <p class="activity-info-text">
             <strong>Description:</strong>
             <span class='description'><%= @activity.description %></span>
           </p>
-          <p>
+          <p class="activity-info-text">
             <strong>When:</strong>
             <span class='next_at'><%= @activity.next_at.try(:strftime, "%B %-d, %Y | %l:%M %P") %></span>
           </p>
-          <p>
+          <p class="activity-info-text">
             <strong>Schedule:</strong>
             <span class='schedule'><%= @activity.schedule %></span>
           </p>
-          <p>
+          <p class="activity-info-text">
             <strong>Contact:</strong>
             <a href='mailto:<%= @activity.organizer_email %>'><%= @activity.organizer_email %></a>
           </p>
@@ -97,8 +96,10 @@
       </div>
     </div>
     <p>
-      <%= link_to 'Edit', edit_activity_path(@activity) %> |
-      <%= link_to 'Back', activities_path %>
+      <% if current_user.id == @activity.user_id %>
+        <%= link_to 'Edit Activity Details', edit_activity_path(@activity) %> |
+      <% end %>
+      <%= link_to 'Back To Home Page', activities_path %>
     </p>
   </div>
 
@@ -107,10 +108,10 @@
   </div>
 
   <% if current_user.id == @activity.user_id %>
-  <div class="row">
-    <div class="col-sm-12" id="participant_list">
+  <div class="row participant-row">
+    <div class="col-sm-5" id="participant_list">
       <h3>Participants In Your Activity</h3>
-      <table>
+      <table class="participant-table">
         <thead>
           <tr>
             <th></th>
@@ -133,7 +134,8 @@
           <% end %>
         </tbody>
       </table>
-  </div>
+    </div>
   <% end %>
+  </div>
 
 </div>
