@@ -31,9 +31,10 @@ RSpec.feature "CancancanRolifies", type: :feature do
         fill_in 'Description', with: 'Run fast'
         fill_in 'Location', with: @location.id
         fill_in 'Schedule', with: 'M-F'
-        select 'Advanced', from: 'Fitness level'
         fill_in 'Requirement', with: 'Running Shoes'
+        select 'Advanced', from: 'Fitness level'
         fill_in 'Pricing', with: '$5'
+        check('Terms of service')
         click_button 'Create Activity'
       end
       Then "I go back to the landing page" do
