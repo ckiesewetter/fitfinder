@@ -33,9 +33,40 @@
     <%= f.datetime_select(:next_at, ampm: true) %>
   </div>
 
-  <div class="field">
+  <div class="field location_id_box">
     <%= f.label :location_id %>
-    <%= f.number_field :location_id %>
+    <%= f.collection_select(:location_id, Location.all, :id, :name, include_blank: true) %>
+  </div>
+
+  <%= link_to 'Add New Location', "#", id: 'new_location_form' %>
+  <div class="location_subform hide">
+    <%= f.fields_for :location, Location.new do |fl| %>
+      <div class="field">
+        <%= fl.label :location_name %>
+        <%= fl.text_field :name %>
+      </div>
+
+      <div class="field">
+        <%= fl.label :address %>
+        <%= fl.text_field :address %>
+      </div>
+
+      <div class="field">
+        <%= fl.label :city %>
+        <%= fl.text_field :city %>
+      </div>
+
+      <div class="field">
+        <%= fl.label :state %>
+        <%= fl.text_field :state %>
+      </div>
+
+      <div class="field">
+        <%= fl.label :zip %>
+        <%= fl.text_field :zip %>
+      </div>
+
+    <% end %>
   </div>
 
   <div class="field">

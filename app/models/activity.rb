@@ -1,8 +1,11 @@
 class Activity < ApplicationRecord
-  belongs_to :location, optional: true
+  belongs_to :location, optional: false
   belongs_to :user, optional: true
-  validates :terms_of_service, acceptance: true
   has_many :participation
+  validates :terms_of_service, acceptance: true
+  validates :location, presence: true
+
+  accepts_nested_attributes_for :location, reject_if: :all_blank
 
   def organizer_name
     if self.user.present?
@@ -17,6 +20,6 @@ class Activity < ApplicationRecord
     else
       "Unknown"
     end
-    
+
   end
 end
