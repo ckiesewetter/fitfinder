@@ -1,6 +1,14 @@
 // Place all the styles related to the Activities controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+html {
+  position: relative;
+  min-height: 100%;
+}
+body {
+  margin-bottom: 60px;
+}
+
 body,
 p,
 ol,
@@ -23,6 +31,10 @@ th {
     display: none;
 }
 
+.navbar-default .navbar-nav>.active>a, .navbar-default .navbar-nav>.active>a:focus, .navbar-default .navbar-nav>.active>a:hover {
+  background-color: #dcc7aa;
+}
+
 .logo-container .navbar-brand:hover,
 .logo-container-xs .navbar-brand:hover {
   background-color: transparent;
@@ -30,6 +42,14 @@ th {
 
 body#sessions-new {
   background: image-url("find-fit-bg.jpg") no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+body#activities-index {
+  background: image-url("activities-bg.jpg") no-repeat center center fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
@@ -52,13 +72,85 @@ body#sessions-new {
   padding-top: 0;
 }
 
+section.welcome {
+  margin-bottom: 40px;
+}
+
+.searchmap {
+  background-color: #f7c331;
+}
+
+aside.left-search {
+  padding: 10px 40px;
+}
+
+input[type="text"] {
+  padding: 6px 10px;
+  border: 1px solid #dcc7aa;
+}
+
+textarea {
+  border: 1px solid #dcc7aa;
+}
+
+.btn-default {
+  background-color: #fff;
+  border-color: #dcc7aa;
+
+  &:hover {
+    background-color: #dcc7aa;
+    border-color: #dcc7aa;
+  }
+}
+
+input[type="submit"] {
+  background-color: #fff;
+  border: 1px solid #dcc7aa;
+  border-radius: 4px;
+  padding: 4px 10px;
+
+  &:hover {
+    background-color: #dcc7aa;
+    border-color: #dcc7aa;
+  }
+}
+
+.activityinfo {
+  background-color: #dcc7aa;
+  padding: 60px 0 20px;
+}
+
+.table>tbody>tr>td {
+  border-top: 1px solid #f7882f;
+}
+
+.table>thead>tr>th {
+  border-bottom: 1px solid #f7882f;
+}
+
+footer {
+  background-color: #f7c331;
+  height: 60px;
+  position: absolute;
+  bottom: 0;
+  width: 102%;
+
+    p {
+      margin: 20px 0;
+    }
+}
+
+.creds {
+  text-align: center;
+}
+
 .col-sm-4.left-search {
   margin-bottom: 40px
 }
 
 #activity_map {
   width: 100%;
-  height: 500px;
+  height: 542px;
 }
 
 .media-body p {
@@ -75,6 +167,7 @@ body#sessions-new {
 
 .alert,
 .notice {
+  font-size: 15px;
   margin: 0;
   padding: 10px 0;
   margin-bottom: 30px;
