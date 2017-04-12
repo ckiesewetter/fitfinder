@@ -4,6 +4,7 @@ var activityId;
 // Create the map when the page loads
 $(document).on('ready', loadAndCreateGmap);
 
+
 function loadAndCreateGmap() {
   // Only load map data if activity map is on the page
   if ($('#activity_map').length > 0 ){
@@ -92,4 +93,11 @@ $(document).ready(function() {
 			$('.imagepreview').attr('src', $(this).find('img').attr('src'));
 			$('#imagemodal').modal('show');
 		});
+
+    $("#new_location_form").on('click', function(e){
+      $('.location_id_box').addClass('hide highlight')
+      $('.location_subform').removeClass('hide')
+      e.preventDefault()
+    })
+
 });

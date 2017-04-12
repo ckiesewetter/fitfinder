@@ -12,3 +12,9 @@
 .terms {
   max-width: 245px;
 }
+
+.location_subform {
+  #activity_location_attributes_name, #activity_location_attributes_address, #activity_location_attributes_city, #activity_location_attributes_state, #activity_location_attributes_zip {
+    background-color: yellow;
+  }
+}
