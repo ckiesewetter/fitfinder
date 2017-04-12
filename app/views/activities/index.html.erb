@@ -1,51 +1,56 @@
-<h1>Welcome to FindFit!</h1>
 <p><strong>A Fitness Group Connector</strong></p>
+<h1>Welcome to FindFit!</h1>
 <hr>
-<h3>What is FindFit?</h3>
-<p>FindFit connects like-minded fitness enthusiasts by giving people the ability to create a fitness group or join an existing fitness group.</p>
 
-<%= form_tag(activities_path, :method => "get") do %>
-  Search Map by Distance
-  <%= label :distance, "Miles:" %>
-  <%= select_tag :distance, options_for_select([[1, 1], [5, 5], [10, 10], [15, 15], [20, 20]]) %>
+<div class="row">
+  <div class="col-sm-4 left-search">
+    <h3>What is FindFit?</h3>
+    <p>FindFit connects like-minded fitness enthusiasts by giving people the ability to create a fitness group or join an existing fitness group.</p>
 
-  <%= label :location, "From:" %>
-  <%= text_field_tag :location, params[:location], placeholder: 'Address, City, State Zip' %>
+    <%= form_tag(activities_path, :method => "get") do %>
+      Search Map by Distance
+      <%= label :distance, "Miles:" %>
+      <%= select_tag :distance, options_for_select([[1, 1], [5, 5], [10, 10], [15, 15], [20, 20]]) %>
 
-  <%= submit_tag "Search By Distance" %>
-<% end %>
+      <%= label :location, "From:" %>
+      <%= text_field_tag :location, params[:location], placeholder: 'Address, City, State Zip' %>
+
+      <%= submit_tag "Search By Distance" %>
+    <% end %>
+    <br>
+    Or Search Map by Activity Information
+    <br>
+    <%= form_tag(activities_path, :method => "get") do %>
+        <%= label :search, "Activity Search:" %>
+        <%= text_field_tag :search, params[:search], placeholder: 'Activity' %>
+        <%= submit_tag "Search By Info", :name => nil %>
+    <% end %>
+    <br>
+    <%= form_tag(activities_path, :method => "get") do %>
+        <%= submit_tag "Click To View My Activities", name: "mine", class: 'view-activities' %>
+    <% end %>
+
+    <%= form_tag(activities_path, :method => "get") do %>
+        <%= submit_tag "Click To View My Past Activities", name: "my_past" %>
+    <% end %>
+  </div>
+
+  <div class="col-sm-8 iframe-container">
+    <div id="activity_map" data-activity-id="0">Google Map will Appear Here</div>
+  </div>
+</div>
+<!-- end map section -->
 <br>
-Or Search Map by Activity Information
-<br>
-<%= form_tag(activities_path, :method => "get") do %>
-    <%= label :search, "Activity Search:" %>
-    <%= text_field_tag :search, params[:search], placeholder: 'Activity' %>
-    <%= submit_tag "Search By Info", :name => nil %>
-<% end %>
-<br>
-<%= form_tag(activities_path, :method => "get") do %>
-    <%= submit_tag "Click To View My Activities", name: "mine" %>
-<% end %>
-
-<%= form_tag(activities_path, :method => "get") do %>
-    <%= submit_tag "Click To View My Past Activities", name: "my_past" %>
-<% end %>
-
-<div id="activity_map" data-activity-id="0">Google Map will Appear Here</div>
 
 <table>
   <thead>
     <tr>
       <th>Name</th>
+      <th>Organizer Name</th>
       <th>Description</th>
       <th>Location</th>
       <th>Schedule</th>
       <th>Next at</th>
-      <th>Organizer Name</th>
-      <th>Fitness Level</th>
-      <th>Requirements</th>
-      <th>Website</th>
-      <th>Pricing</th>
     </tr>
   </thead>
 
@@ -53,18 +58,14 @@ Or Search Map by Activity Information
     <% @activities.each do |activity| %>
       <tr class='activity' data-lat='<%= activity.location.latitude %>' data-lng='<%= activity.location.longitude %>'>
         <td class='name'><%= activity.name %></td>
+        <td class='organizer_name'><%= activity.organizer_name %></td>
         <td class='description'><%= activity.description %></td>
         <td class='location'><%= activity.location.try(:name) %></td>
         <td class='schedule'><%= activity.schedule %></td>
         <td class='next_at'><%= activity.next_at.try(:strftime, "%B %-d, %Y | %l:%M %P") %></td>
-        <td class='organizer_name'><%= activity.organizer_name %></td>
-        <td class='fitness_level'><%= activity.fitness_level %></td>
-        <td class='requirement'><%= activity.requirement %></td>
-        <td class='website'><%= activity.website %></td>
-        <td class='pricing'><%= activity.pricing %></td>
 
         <!--if the current user has a particiaption record that has the activity id of this activity -->
-        
+
         <% if current_user.participations.where("activity_id = ?", activity.id).count > 0 %>
         <td id="participate"><%= link_to 'Remove', "/participant/#{activity.id}", method: :delete, data: { confirm: 'Are you sure?' }  %></td>
         <% else %>
@@ -82,5 +83,5 @@ Or Search Map by Activity Information
 
 <br>
 
-<%= link_to 'Profile', profile_path %>
+<%= link_to 'Profile', profile_path %> |
 <%= link_to 'New Activity', new_activity_path %>
