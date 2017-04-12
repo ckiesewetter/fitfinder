@@ -6,6 +6,7 @@
 
 body {
   font-family: 'Quattrocento', serif;
+  font-weight: bold;
 }
 
 #sessions-new nav.navbar.navbar-default {
@@ -58,6 +59,7 @@ body#sessions-new {
   max-width: 245px;
 }
 
+
 .view-activities {
   margin-bottom: 20px;
 }
@@ -68,6 +70,43 @@ body#sessions-new {
   padding: 10px 0;
   margin-bottom: 30px;
   margin-top: 30px;
+}
+
+
+body#activities-show {
+  background: image-url("activity_show_background_tinted.jpeg") no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+.activity-info {
+  background-color: rgba(247, 136, 47, 0.5);
+  margin-bottom: 5px;
+  padding: 20px;
+  border-radius: 25px;
+}
+
+.activity-info-text {
+  text-decoration-color: white;
+}
+
+
+.activity_title {
+  // background-color: #F7C331;
+}
+
+.participant-row {
+  margin-top: 20px;
+}
+
+#participant_list {
+  background-color: rgba(247, 136, 47, 0.5);
+  padding: 1px 20px 20px 20px;
+  border-radius: 25px;
+}
+
 .participant_image {
   height: 50px;
   width: 50px;
