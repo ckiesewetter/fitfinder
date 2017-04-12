@@ -22,4 +22,5 @@ Rails.application.routes.draw do
   post '/participant/:activity_id' => 'participant#create'
   post '/participant/user'
   delete '/participant/:activity_id' => 'participant#destroy'
+  
 end
