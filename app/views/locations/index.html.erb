@@ -5,6 +5,7 @@
 <table>
   <thead>
     <tr>
+      <th></th>
       <th>Name</th>
       <th>Address</th>
       <th>City</th>
@@ -19,6 +20,11 @@
   <tbody>
     <% @locations.each do |location| %>
       <tr>
+        <td>
+          <% unless location.image.blank? %>
+            <img class="location_index_image" src="<%= location.image %>" alt="">
+          <% end %>
+        </td>
         <td><%= location.name %></td>
         <td><%= location.address %></td>
         <td><%= location.city %></td>
