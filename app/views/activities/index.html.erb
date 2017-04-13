@@ -1,9 +1,12 @@
-<p><strong>A Fitness Group Connector</strong></p>
-<h1>Welcome to FindFit!</h1>
-<hr>
+<section class="row welcome">
+  <div class="col-sm-12">
+    <h1>Welcome to FindFit!</h1>
+    <h2>A Fitness Group Connector</h2>
+  </div>
+</section>
 
-<div class="row">
-  <div class="col-sm-4 left-search">
+<section class="row searchmap">
+  <aside class="col-sm-4 left-search">
     <h3>What is FindFit?</h3>
     <p>FindFit connects like-minded fitness enthusiasts by giving people the ability to create a fitness group or join an existing fitness group.</p>
 
@@ -15,7 +18,7 @@
       <%= label :location, "From:" %>
       <%= text_field_tag :location, params[:location], placeholder: 'Address, City, State Zip' %>
 
-      <%= submit_tag "Search By Distance" %>
+      <%= submit_tag "Search By Distance", class: 'btn btn-default' %>
     <% end %>
     <br>
     Or Search Map by Activity Information
@@ -23,65 +26,71 @@
     <%= form_tag(activities_path, :method => "get") do %>
         <%= label :search, "Activity Search:" %>
         <%= text_field_tag :search, params[:search], placeholder: 'Activity' %>
-        <%= submit_tag "Search By Info", :name => nil %>
+        <%= submit_tag "Search By Info", :name => nil, class: 'btn btn-default' %>
     <% end %>
     <br>
     <%= form_tag(activities_path, :method => "get") do %>
-        <%= submit_tag "Click To View My Activities", name: "mine", class: 'view-activities' %>
+        <%= submit_tag "Click To View My Activities", name: "mine", class: 'view-activities btn btn-default' %>
     <% end %>
 
     <%= form_tag(activities_path, :method => "get") do %>
-        <%= submit_tag "Click To View My Past Activities", name: "my_past" %>
+        <%= submit_tag "Click To View My Past Activities", name: "my_past", class: 'btn btn-default' %>
     <% end %>
-  </div>
+  </aside>
 
-  <div class="col-sm-8 iframe-container">
+  <aside class="col-sm-8">
     <div id="activity_map" data-activity-id="0">Google Map will Appear Here</div>
-  </div>
-</div>
+  </aside>
+</section>
 <!-- end map section -->
-<br>
 
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Organizer Name</th>
-      <th>Description</th>
-      <th>Location</th>
-      <th>Schedule</th>
-      <th>Next at</th>
-    </tr>
-  </thead>
+<section class="row activityinfo">
+  <article class="col-sm-12 table-responsive">
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Organizer Name</th>
+          <th>Description</th>
+          <th>Location</th>
+          <th>Schedule</th>
+          <th>Next at</th>
+        </tr>
+      </thead>
 
-  <tbody>
-    <% @activities.each do |activity| %>
-      <tr class='activity' data-lat='<%= activity.location.latitude %>' data-lng='<%= activity.location.longitude %>'>
-        <td class='name'><%= activity.name %></td>
-        <td class='organizer_name'><%= activity.organizer_name %></td>
-        <td class='description'><%= activity.description %></td>
-        <td class='location'><%= activity.location.try(:name) %></td>
-        <td class='schedule'><%= activity.schedule %></td>
-        <td class='next_at'><%= activity.next_at.try(:strftime, "%B %-d, %Y | %l:%M %P") %></td>
+      <tbody>
+        <% @activities.each do |activity| %>
+          <tr class='activity' data-lat='<%= activity.location.latitude %>' data-lng='<%= activity.location.longitude %>'>
+            <td class='name'><%= activity.name %></td>
+            <td class='organizer_name'><%= activity.organizer_name %></td>
+            <td class='description'><%= activity.description %></td>
+            <td class='location'><%= activity.location.try(:name) %></td>
+            <td class='schedule'><%= activity.schedule %></td>
+            <td class='next_at'><%= activity.next_at.try(:strftime, "%B %-d, %Y | %l:%M %P") %></td>
 
-        <!--if the current user has a particiaption record that has the activity id of this activity -->
+            <!--if the current user has a particiaption record that has the activity id of this activity -->
 
-        <% if current_user.participations.where("activity_id = ?", activity.id).count > 0 %>
-        <td id="participate"><%= link_to 'Remove', "/participant/#{activity.id}", method: :delete, data: { confirm: 'Are you sure?' }  %></td>
-        <% else %>
-        <td id="participate" class="sign_up"><%= link_to 'Sign Up', "/participant/#{activity.id}", method: :post, data: { confirm: 'Are you sure?' }  %></td>
+            <% if current_user.participations.where("activity_id = ?", activity.id).count > 0 %>
+            <td id="participate"><%= link_to 'Remove', "/participant/#{activity.id}", method: :delete, data: { confirm: 'Are you sure?' }  %></td>
+            <% else %>
+            <td id="participate" class="sign_up"><%= link_to 'Sign Up', "/participant/#{activity.id}", method: :post, data: { confirm: 'Are you sure?' }  %></td>
+            <% end %>
+            <td><%= link_to 'Show', activity %></td>
+            <% if can? :manage, activity %>
+            <td><%= link_to 'Edit', edit_activity_path(activity) %></td>
+            <td><%= link_to 'Destroy', activity, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+            <% end %>
+          </tr>
         <% end %>
-        <td><%= link_to 'Show', activity %></td>
-        <% if can? :manage, activity %>
-        <td><%= link_to 'Edit', edit_activity_path(activity) %></td>
-        <td><%= link_to 'Destroy', activity, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-        <% end %>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'Profile', profile_path %> |
-<%= link_to 'New Activity', new_activity_path %>
+      </tbody>
+    </table>
+  </article>
+  <article class="row">
+    <div class="col-sm-12">
+      <p>
+        <%= link_to 'Profile', profile_path %> |
+        <%= link_to 'New Activity', new_activity_path %>
+      </p>
+    </div>
+  </article>
+</section>

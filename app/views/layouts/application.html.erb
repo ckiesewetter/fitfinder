@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <link href="https://fonts.googleapis.com/css?family=Oswald|Quattrocento" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Oswald|Quattrocento+Sans" rel="stylesheet">
     <!--These three scripts are for google maps -->
     <script src="//maps.google.com/maps/api/js?key=AIzaSyDd87aqSi8obY2R7coA5gqBnkajyKldrRM"></script>
     <script src="//cdn.rawgit.com/mahnunchik/markerclustererplus/master/dist/markerclusterer.min.js"></script>
@@ -116,6 +116,12 @@
       <div class="alert"><%= alert %></div>
       <%= yield %>
     </div>
+
+    <footer class="row">
+      <div class="col-sm-12">
+        <p class="creds">&copy; 2017 Team Shake 'n Bake | Alpha Cohort, <%= link_to "LEARN Academy", "https://www.learnacademy.org/", target: "_blank" %></p>
+      </div>
+    </footer>
 
   </body>
 </html>
