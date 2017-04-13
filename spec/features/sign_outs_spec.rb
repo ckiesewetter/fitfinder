@@ -15,7 +15,9 @@ RSpec.feature "SignOuts", type: :feature do
         click_button 'Log in'
       end
       When "I click Sign Out I log out of the application" do
-        click_link "Sign Out"
+        within('div.hidden-xs') do
+          click_link 'Sign Out'
+        end
       end
       Then "I expect to see Log in on the users/sign_in page" do
         expect(page).to have_content("Log in")

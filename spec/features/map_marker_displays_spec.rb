@@ -21,10 +21,9 @@ RSpec.feature "MapMarkerDisplays", type: :feature do
       end
       Then "I can fill in form fields" do
         fill_in 'Name', with: 'Wind Sprints'
-        # fill_in 'User', with: 1
         fill_in 'Website', with: 'www.google.com'
         fill_in 'Description', with: 'Run fast'
-        fill_in 'Location', with: @location.id
+        select 'Petco Park', from: 'Location'
         fill_in 'Schedule', with: 'M-F'
         fill_in 'Requirement', with: 'Bring shoes'
         fill_in 'Pricing', with: '$5'
@@ -37,11 +36,8 @@ RSpec.feature "MapMarkerDisplays", type: :feature do
       Then "I can see information on the Activities page" do
         expect(page).to have_content("Petco Park")
         expect(page).to have_content("Wind Sprints")
-        expect(page).to have_content("www.google.com")
         expect(page).to have_content("M-F")
         expect(page).to have_content("Run fast")
-        expect(page).to have_content("Bring shoes")
-        expect(page).to have_content("$5")
       end
     end
   end
