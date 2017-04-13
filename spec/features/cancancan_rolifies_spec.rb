@@ -29,7 +29,7 @@ RSpec.feature "CancancanRolifies", type: :feature do
         fill_in 'Name', with: 'Wind Sprints'
         fill_in 'Website', with: 'www.google.com'
         fill_in 'Description', with: 'Run fast'
-        fill_in 'Location', with: @location.id
+        select 'LEARN', from: 'Location'
         fill_in 'Schedule', with: 'M-F'
         fill_in 'Requirement', with: 'Running Shoes'
         select 'Advanced', from: 'Fitness level'
@@ -44,7 +44,9 @@ RSpec.feature "CancancanRolifies", type: :feature do
         expect(page).to have_content("Destroy")
       end
       Then "I logout" do
-        click_link 'Sign Out'
+        within('div.hidden-xs') do
+          click_link 'Sign Out'
+        end
       end
       Then "I Sign up as a new user" do
         click_link 'Sign up'

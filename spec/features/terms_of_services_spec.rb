@@ -31,7 +31,7 @@ RSpec.feature "TermsOfServices", type: :feature do
         fill_in 'Name', with: 'Wind Sprints'
         fill_in 'Website', with: 'www.google.com'
         fill_in 'Description', with: 'Run fast'
-        fill_in 'Location', with: @location.id
+        select 'LEARN', from: 'Location'
         fill_in 'Schedule', with: 'M-F'
         fill_in 'Requirement', with: 'Shoes'
         fill_in 'Pricing', with: '$5'
