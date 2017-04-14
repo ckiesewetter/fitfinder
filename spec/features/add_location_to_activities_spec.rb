@@ -45,9 +45,6 @@ RSpec.feature "AddLocationToActivities", type: :feature do
         expect(page).to have_content("Wind Sprints")
         expect(page).to have_content("Run fast")
         expect(page).to have_content("M-F")
-        expect(page).to have_content("Shoes")
-        expect(page).to have_content("www.google.com")
-        expect(page).to have_content("$5")
       end
       Then "I click the new activity button" do
         click_link "New Activity"
@@ -62,13 +59,10 @@ RSpec.feature "AddLocationToActivities", type: :feature do
         click_button 'Create Activity'
       end
       When "I click the back button" do
-        click_link 'Back'
+        click_link 'Back To Home Page'
         expect(page).to have_content("Running")
         expect(page).to have_content("Run faster")
         expect(page).to have_content("Sat 9am-10am")
-        expect(page).to have_content("Tights")
-        expect(page).to have_content("www.running.com")
-        expect(page).to have_content("Free")
       end
     end
   end

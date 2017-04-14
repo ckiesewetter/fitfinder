@@ -37,12 +37,12 @@ RSpec.feature "NewActivities", type: :feature do
       end
       When "I can fill in form fields" do
         fill_in 'Name', with: 'Wind Sprints'
-        # Using @user.id instead of an actual id like 1 tells the virtual db to use whatever rspec is using for the id.
-        # fill_in 'User', with: @user.id
         fill_in 'Website', with: 'www.google.com'
         fill_in 'Description', with: 'Run fast'
-        fill_in 'Location', with: @location.id
+        select 'LEARN', from: 'Location'
         fill_in 'Schedule', with: 'M-F'
+        fill_in 'Requirement', with: 'Shoes'
+        fill_in 'Pricing', with: 'Free'
         check('Terms of service')
         click_button 'Create Activity'
       end
@@ -51,6 +51,8 @@ RSpec.feature "NewActivities", type: :feature do
         expect(page).to have_content("Wind Sprints")
         expect(page).to have_content("www.google.com")
         expect(page).to have_content("Run fast")
+        expect(page).to have_content("Free")
+        expect(page).to have_content("Shoes")
         expect(page).to have_content("M-F")
       end
     end
