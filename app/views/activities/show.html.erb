@@ -11,94 +11,93 @@
     <div class="col-sm-1"></div>
   </div>
 
-  <div class="row">
+  <div class="row row-flex row-flex-wrap">
     <div class="col-sm-1"></div>
-    <div class="col-sm-5">
-        <div class="media">
-          <div class="media-left">
-            <a href="#" class="pop">
-              <img class="thumbnail" src="<%= @activity.location.image %>" alt="..." style="width: 75px; height 75px;">
-            </a>
-            <div class="modal fade" id="imagemodal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-              <div class="modal-dialog">
-                <div class="modal-content">
-                  <div class="modal-body">
-                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                    <img src="" class="imagepreview" style="width: 100%;" >
+        <div class="col-sm-5 flex-col">
+            <div class="media flex-grow">
+              <div class="media-left">
+                <a href="#" class="pop">
+                  <img class="thumbnail" src="<%= @activity.location.image %>" alt="..." style="width: 75px; height 75px;">
+                </a>
+                <div class="modal fade" id="imagemodal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                  <div class="modal-dialog">
+                    <div class="modal-content">
+                      <div class="modal-body">
+                        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                        <img src="" class="imagepreview" style="width: 100%;" >
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="media-body activity-info">
+                <div>
+                <% if @activity.location %>
+                <h3 class="media-heading activity-info-text">Location: <span class="location"><%= @activity.location.name %></span></h3>
+                <p class="activity-info-text">
+                  <strong>Address:</strong>
+                  <%= @activity.location.full_address %>
+                </p>
+                <p class="activity-info-text">
+                  <strong>Fitness Level:</strong>
+                  <%= @activity.fitness_level %>
+                </p>
+                <p class="activity-info-text">
+                  <strong>Pricing:</strong>
+                  <%= @activity.pricing %>
+                </p>
+                <p class="activity-info-text">
+                  <strong>Requirements:</strong>
+                  <%= @activity.requirement %>
+                </p>
+                <% end %>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-5 flex-col">
+          <div class="media flex-grow">
+            <div class="media-left">
+              <a href="#" class="pop">
+                <img class="thumbnail" src="<%= @activity.user.image %>" alt="..." style="width: 75px; height 75px;">
+              </a>
+              <div class="modal fade" id="imagemodal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-body">
+                      <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                      <img src="" class="imagepreview" style="width: 100%;" >
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
-          </div>
-          <div class="media-body activity-info">
-            <div>
-            <% if @activity.location %>
-            <h3 class="media-heading activity-info-text">Location: <span class="location"><%= @activity.location.name %></span></h3>
-            <p class="activity-info-text">
-              <strong>Address:</strong>
-              <%= @activity.location.full_address %>
-            </p>
-            <p class="activity-info-text">
-              <strong>Fitness Level:</strong>
-              <%= @activity.fitness_level %>
-            </p>
-            <p class="activity-info-text">
-              <strong>Pricing:</strong>
-              <%= @activity.pricing %>
-            </p>
-            <p class="activity-info-text">
-              <strong>Requirements:</strong>
-              <%= @activity.requirement %>
-            </p>
-            <% end %>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="col-sm-5">
-      <div class="media">
-        <div class="media-left">
-          <a href="#" class="pop">
-            <img class="thumbnail" src="<%= @activity.user.image %>" alt="..." style="width: 75px; height 75px;">
-          </a>
-          <div class="modal fade" id="imagemodal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
-              <div class="modal-content">
-                <div class="modal-body">
-                  <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                  <img src="" class="imagepreview" style="width: 100%;" >
-                </div>
-              </div>
+            <div class="media-body activity-info">
+              <h3 class="media-heading activity-info-text">Organizer: <%= @activity.organizer_name %>
+              </h3>
+              <p class="activity-info-text">
+                <strong>Website:</strong>
+                <span class='website'><%= link_to @activity.website, @activity.website, target: '_blank' %></span>
+              </p>
+              <p class="activity-info-text">
+                <strong>Description:</strong>
+                <span class='description'><%= @activity.description %></span>
+              </p>
+              <p class="activity-info-text">
+                <strong>When:</strong>
+                <span class='next_at'><%= @activity.next_at.try(:strftime, "%B %-d, %Y | %l:%M %P") %></span>
+              </p>
+              <p class="activity-info-text">
+                <strong>Schedule:</strong>
+                <span class='schedule'><%= @activity.schedule %></span>
+              </p>
+              <p class="activity-info-text">
+                <strong>Contact:</strong>
+                <a href='mailto:<%= @activity.organizer_email %>'><%= @activity.organizer_email %></a>
+              </p>
             </div>
           </div>
         </div>
-        <div class="media-body activity-info">
-          <h3 class="media-heading activity-info-text">Organizer: <%= @activity.organizer_name %>
-          </h3>
-          <p class="activity-info-text">
-            <strong>Website:</strong>
-            <span class='website'><%= link_to @activity.website, @activity.website, target: '_blank' %></span>
-          </p>
-          <p class="activity-info-text">
-            <strong>Description:</strong>
-            <span class='description'><%= @activity.description %></span>
-          </p>
-          <p class="activity-info-text">
-            <strong>When:</strong>
-            <span class='next_at'><%= @activity.next_at.try(:strftime, "%B %-d, %Y | %l:%M %P") %></span>
-          </p>
-          <p class="activity-info-text">
-            <strong>Schedule:</strong>
-            <span class='schedule'><%= @activity.schedule %></span>
-          </p>
-          <p class="activity-info-text">
-            <strong>Contact:</strong>
-            <a href='mailto:<%= @activity.organizer_email %>'><%= @activity.organizer_email %></a>
-          </p>
-        </div>
-      </div>
-    </div>
     <div class="col-sm-1"></div>
   </div>
 
@@ -158,4 +157,15 @@
     <div class="col-sm-4"></div>
   </div>
 
+  <div class="row">
+    <div class="col-sm-1"></div>
+    <div class="col-sm-10">
+      <p>
+        <p>
+          <%= link_to 'Back To Home Page', activities_path, class: "lg-link" %>
+        </p>
+      </p>
+    </div>
+    <div class="col-sm-1"></div>
+  </div>
 </div>
