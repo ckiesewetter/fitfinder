@@ -2,57 +2,61 @@
 
 <div class="container-fluid activity" data-lat='<%= @activity.location.latitude %>' data-lng='<%= @activity.location.longitude %>'>
   <div class="row">
-    <div class="col-sm-12">
+    <div class="col-sm-1"></div>
+    <div class="col-sm-10">
       <div class="show_header activity_title">
         <h1 class="name"><span class='name'><%= @activity.name %></span></h1>
       </div>
     </div>
+    <div class="col-sm-1"></div>
   </div>
+
   <div class="row">
-    <div class="col-sm-6">
-      <div class="media">
-        <div class="media-left">
-          <a href="#" class="pop">
-            <img class="thumbnail" src="<%= @activity.location.image %>" alt="..." style="width: 75px; height 75px;">
-          </a>
-          <div class="modal fade" id="imagemodal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
-              <div class="modal-content">
-                <div class="modal-body">
-                  <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                  <img src="" class="imagepreview" style="width: 100%;" >
+    <div class="col-sm-1"></div>
+    <div class="col-sm-5">
+        <div class="media">
+          <div class="media-left">
+            <a href="#" class="pop">
+              <img class="thumbnail" src="<%= @activity.location.image %>" alt="..." style="width: 75px; height 75px;">
+            </a>
+            <div class="modal fade" id="imagemodal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-body">
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                    <img src="" class="imagepreview" style="width: 100%;" >
+                  </div>
                 </div>
               </div>
             </div>
           </div>
-        </div>
-        <div class="media-body activity-info">
-          <div>
-          <% if @activity.location %>
-          <h3 class="media-heading activity-info-text">Location: <span class="location"><%= @activity.location.name %></span></h3>
-          <p class="activity-info-text">
-            <strong>Address:</strong>
-            <%= @activity.location.full_address %>
-          </p>
-          <p class="activity-info-text">
-            <strong>Fitness Level:</strong>
-            <%= @activity.fitness_level %>
-          </p>
-          <p class="activity-info-text">
-            <strong>Pricing:</strong>
-            <%= @activity.pricing %>
-          </p>
-          <p class="activity-info-text">
-            <strong>Requirements:</strong>
-            <%= @activity.requirement %>
-          </p>
-          <% end %>
+          <div class="media-body activity-info">
+            <div>
+            <% if @activity.location %>
+            <h3 class="media-heading activity-info-text">Location: <span class="location"><%= @activity.location.name %></span></h3>
+            <p class="activity-info-text">
+              <strong>Address:</strong>
+              <%= @activity.location.full_address %>
+            </p>
+            <p class="activity-info-text">
+              <strong>Fitness Level:</strong>
+              <%= @activity.fitness_level %>
+            </p>
+            <p class="activity-info-text">
+              <strong>Pricing:</strong>
+              <%= @activity.pricing %>
+            </p>
+            <p class="activity-info-text">
+              <strong>Requirements:</strong>
+              <%= @activity.requirement %>
+            </p>
+            <% end %>
+          </div>
         </div>
       </div>
     </div>
-  </div>
 
-    <div class="col-sm-6">
+    <div class="col-sm-5">
       <div class="media">
         <div class="media-left">
           <a href="#" class="pop">
@@ -95,47 +99,63 @@
         </div>
       </div>
     </div>
-    <p>
-      <% if current_user.id == @activity.user_id %>
-        <%= link_to 'Edit Activity Details', edit_activity_path(@activity) %> |
-      <% end %>
-      <%= link_to 'Back To Home Page', activities_path %>
-    </p>
+    <div class="col-sm-1"></div>
   </div>
 
-  <div class="row">
-    <div class="col-sm-12" id="activity_map" data-activity-id="<%= @activity.id %>">Google Map will Appear Here</div>
+    <div class="row">
+      <div class="col-sm-1"></div>
+        <div class="col-sm-10">
+          <p>
+            <% if current_user.id == @activity.user_id %>
+              <%= link_to 'Edit Activity Details', edit_activity_path(@activity), class: "lg-link" %> |
+            <% end %>
+            <%= link_to 'Back To Home Page', activities_path, class: "lg-link" %>
+          </p>
+        </div>
+      <div class="col-sm-1"></div>
+    </div>
+
+  <div class="row activitymap">
+    <div class="col-sm-1"></div>
+      <div class="col-sm-10">
+        <div id="activity_map" data-activity-id="<%= @activity.id %>">Google Map will Appear Here</div>
+      </div>
+    <div class="col-sm-1"></div>
   </div>
 
   <% if current_user.id == @activity.user_id %>
   <div class="row participant-row">
-    <div class="col-sm-5" id="participant_list">
-      <h3>Participants In Your Activity</h3>
-      <table class="participant-table">
-        <thead>
-          <tr>
-            <th></th>
-            <th>Name</th>
-            <th>Email</th>
-          </tr>
-        </thead>
+    <div class="col-sm-4"></div>
+      <div class="col-sm-4" id="participant_list">
+        <h3>Participants In Your Activity</h3>
+        <div class="col-sm-12 participant-table">
+          <table>
+            <thead>
+              <tr>
+                <th></th>
+                <th>Name</th>
+                <th>Email</th>
+              </tr>
+            </thead>
 
-        <tbody>
-          <% @participant.each do |participant| %>
-            <tr>
-              <td>
-                <% unless participant.image.blank? %>
-                  <img class="participant_image" src="<%= participant.image %>" alt="">
-                <% end %>
-              </td>
-              <td><%= participant.first_name %></td>
-              <td><%= participant.email %></td>
-            </tr>
-          <% end %>
-        </tbody>
-      </table>
-    </div>
-  <% end %>
+            <tbody>
+              <% @participant.each do |participant| %>
+                <tr>
+                  <td>
+                    <% unless participant.image.blank? %>
+                      <img class="participant_image" src="<%= participant.image %>" alt="">
+                    <% end %>
+                  </td>
+                  <td><%= participant.first_name %></td>
+                  <td><%= participant.email %></td>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
+        <% end %>
+      </div>
+    <div class="col-sm-4"></div>
   </div>
 
 </div>

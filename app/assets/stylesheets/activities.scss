@@ -28,10 +28,12 @@ th {
 }
 
 #sessions-new nav.navbar.navbar-default {
-    display: none;
+  display: none;
 }
 
-.navbar-default .navbar-nav>.active>a, .navbar-default .navbar-nav>.active>a:focus, .navbar-default .navbar-nav>.active>a:hover {
+.navbar-default .navbar-nav>.active>a,
+.navbar-default .navbar-nav>.active>a:focus,
+.navbar-default .navbar-nav>.active>a:hover {
   background-color: #dcc7aa;
 }
 
@@ -60,6 +62,14 @@ body#activities-index {
   background-size: cover;
 }
 
+body#activities-show {
+  background: image-url("activity_show_background_tinted.jpeg") no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
 .nav-container {
   margin-left: 200px;
   padding-top: 29px;
@@ -77,7 +87,7 @@ body#activities-index {
 }
 
 section.welcome {
-  margin-bottom: 40px;
+  margin-bottom: 30px;
 }
 
 .searchmap {
@@ -142,19 +152,23 @@ footer {
     p {
       margin: 20px 0;
     }
+
+    .creds {
+      text-align: center;
+    }
 }
 
-.creds {
-  text-align: center;
-}
-
-.col-sm-4.left-search {
-  margin-bottom: 40px
+.left-search {
+  margin-bottom: 40px;
 }
 
 #activity_map {
   width: 100%;
   height: 542px;
+}
+
+.activitymap { /* Space beneath show page map */
+  margin-bottom: 100px
 }
 
 .media-body p {
@@ -165,10 +179,13 @@ footer {
   max-width: 245px;
 }
 
-.location_subform {
-  #activity_location_attributes_name, #activity_location_attributes_address, #activity_location_attributes_city, #activity_location_attributes_state, #activity_location_attributes_zip {
-    background-color: yellow;
-  }
+#activity_location_attributes_name,
+#activity_location_attributes_address,
+#activity_location_attributes_city,
+#activity_location_attributes_state,
+#activity_location_attributes_zip {
+  background-color: yellow;
+}
 
 .view-activities {
   margin-bottom: 20px;
@@ -183,12 +200,13 @@ footer {
   margin-top: 30px;
 }
 
-body#activities-show {
-  background: image-url("activity_show_background_tinted.jpeg") no-repeat center center fixed;
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
+
+.media:first-child {
+    margin-bottom: 40px;
+}
+
+.activity_title {
+  margin-bottom: 40px;
 }
 
 .activity-info {
@@ -202,13 +220,13 @@ body#activities-show {
   text-decoration-color: white;
 }
 
-
-.activity_title {
-  // background-color: #F7C331;
+.lg-link {
+  font-size: 15px;
+  font-weight: bold;
 }
 
 .participant-row {
-  margin-top: 20px;
+  margin: 100px 0;
 }
 
 #participant_list {
