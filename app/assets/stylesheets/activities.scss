@@ -225,6 +225,38 @@ footer {
   text-decoration-color: white;
 }
 
+/* Equalize activity info containers height */
+.row-flex, .row-flex > div[class*='col-'] {
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    flex:1 1 auto;
+}
+
+.row-flex-wrap {
+	-webkit-flex-flow: row wrap;
+    align-content: flex-start;
+    flex:0;
+}
+
+.flex-col {
+    display: flex;
+    display: -webkit-flex;
+    flex: 1 100%;
+	flex-flow: column nowrap;
+}
+
+@media only screen and (min-width: 768px) {
+    .flex-grow {
+      display: flex;
+      -webkit-flex: 2;
+      flex: 2;
+    }
+}
+/* END - Equalize activity info containers height */
+
 .lg-link {
   font-size: 15px;
   font-weight: bold;
@@ -238,6 +270,12 @@ footer {
   background-color: rgba(247, 136, 47, 0.5);
   padding: 1px 20px 20px 20px;
   border-radius: 25px;
+  text-align: center;
+}
+
+.participant-table {
+  display: flex;
+  justify-content: center;
 }
 
 .participant_image {
