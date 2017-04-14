@@ -1,98 +1,106 @@
-<%= form_for(activity) do |f| %>
-  <% if activity.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(activity.errors.count, "error") %> prohibited this activity from being saved:</h2>
+<div class="container-fluid">
+  <section class="row">
+    <div class="col-sm-12">
+        <h1>New Activity</h1>
+        <%= form_for(activity) do |f| %>
+        <% if activity.errors.any? %>
+          <div id="error_explanation">
+            <h2><%= pluralize(activity.errors.count, "error") %> prohibited this activity from being saved:</h2>
 
-      <ul>
-      <% activity.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
+            <ul>
+            <% activity.errors.full_messages.each do |message| %>
+              <li><%= message %></li>
+            <% end %>
+            </ul>
+          </div>
+        <% end %>
+
+        <div class="field">
+          <%= f.label :name %>
+          <%= f.text_field :name %>
+        </div>
+
+        <%= f.hidden_field :user_id, value: current_user.id %>
+
+        <div class="field">
+          <%= f.label :website %>
+          <%= f.text_field :website %>
+        </div>
+
+        <div class="field">
+          <%= f.label :description %>
+          <%= f.text_area :description %>
+        </div>
+
+        <div class="field">
+          <%= f.label :next_at %>
+          <%= f.datetime_select(:next_at, ampm: true) %>
+        </div>
+
+        <div class="field location_id_box">
+          <%= f.label :location_id %>
+          <%= f.collection_select(:location_id, Location.all, :id, :name, include_blank: true) %>
+        </div>
+
+        <%= link_to 'Add New Location', "#", id: 'new_location_form' %>
+        <div class="location_subform hide">
+          <%= f.fields_for :location, Location.new do |fl| %>
+            <div class="field">
+              <%= fl.label :location_name %>
+              <%= fl.text_field :name %>
+            </div>
+
+            <div class="field">
+              <%= fl.label :address %>
+              <%= fl.text_field :address %>
+            </div>
+
+            <div class="field">
+              <%= fl.label :city %>
+              <%= fl.text_field :city %>
+            </div>
+
+            <div class="field">
+              <%= fl.label :state %>
+              <%= fl.text_field :state %>
+            </div>
+
+            <div class="field">
+              <%= fl.label :zip %>
+              <%= fl.text_field :zip %>
+            </div>
+
+          <% end %>
+        </div>
+
+        <div class="field">
+          <%= f.label :schedule %>
+          <%= f.text_area :schedule %>
+        </div>
+
+        <div class="field">
+          <%= f.label :requirement %>
+          <%= f.text_area :requirement %>
+        </div>
+
+        <div class="field">
+          <%= f.label :fitness_level %>
+          <%= f.select :fitness_level, ['Beginner', 'Intermediate', 'Advanced', 'All Levels Welcome'] %>
+        </div>
+
+        <div class="field">
+          <%= f.label :pricing %>
+          <%= f.text_field :pricing %>
+        </div>
+
+        <div class="actions terms">
+          <%= f.label :terms_of_service %>
+          <%= f.check_box :terms_of_service %> By agreeing to FindFits terms of service, FindFit is granted the right to use, reproduce, publish, translate and distribute your content in any existing and future media.  You also grant FindFit the right to sub-license these rights, and the right to bring an action for infringement of these rights.</span>
+          <br><br>
+          <%= f.submit %>
+        </div>
       <% end %>
-      </ul>
+      <p><%= link_to 'Back', activities_path, class: "lg-link" %></p>
     </div>
-  <% end %>
-
-  <div class="field">
-    <%= f.label :name %>
-    <%= f.text_field :name %>
-  </div>
-
-  <%= f.hidden_field :user_id, value: current_user.id %>
-
-  <div class="field">
-    <%= f.label :website %>
-    <%= f.text_field :website %>
-  </div>
-
-  <div class="field">
-    <%= f.label :description %>
-    <%= f.text_area :description %>
-  </div>
-
-  <div class="field">
-    <%= f.label :next_at %>
-    <%= f.datetime_select(:next_at, ampm: true) %>
-  </div>
-
-  <div class="field location_id_box">
-    <%= f.label :location_id %>
-    <%= f.collection_select(:location_id, Location.all, :id, :name, include_blank: true) %>
-  </div>
-
-  <%= link_to 'Add New Location', "#", id: 'new_location_form' %>
-  <div class="location_subform hide">
-    <%= f.fields_for :location, Location.new do |fl| %>
-      <div class="field">
-        <%= fl.label :location_name %>
-        <%= fl.text_field :name %>
-      </div>
-
-      <div class="field">
-        <%= fl.label :address %>
-        <%= fl.text_field :address %>
-      </div>
-
-      <div class="field">
-        <%= fl.label :city %>
-        <%= fl.text_field :city %>
-      </div>
-
-      <div class="field">
-        <%= fl.label :state %>
-        <%= fl.text_field :state %>
-      </div>
-
-      <div class="field">
-        <%= fl.label :zip %>
-        <%= fl.text_field :zip %>
-      </div>
-
-    <% end %>
-  </div>
-
-  <div class="field">
-    <%= f.label :schedule %>
-    <%= f.text_area :schedule %>
-  </div>
-
-  <div class="field">
-    <%= f.label :requirement %>
-    <%= f.text_area :requirement %>
-  </div>
-
-  <div class="field">
-    <%= f.label :fitness_level %>
-    <%= f.select :fitness_level, ['Beginner', 'Intermediate', 'Advanced', 'All Levels Welcome'] %>
-  </div>
-
-  <div class="field">
-    <%= f.label :pricing %>
-    <%= f.text_field :pricing %>
-  </div>
-
-  <div class="actions terms">
-    <%= f.label :terms_of_service %>
-    <%= f.check_box :terms_of_service %> By agreeing to FindFits terms of service, FindFit is granted the right to use, reproduce, publish, translate and distribute your content in any existing and future media.  You also grant FindFit the right to sub-license these rights, and the right to bring an action for infringement of these rights.</span>
-    <br><br>
-    <%= f.submit %>
-  </div>
-<% end %>
+  </section>
+</div>
