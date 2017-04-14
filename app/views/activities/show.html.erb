@@ -60,7 +60,7 @@
       <div class="media">
         <div class="media-left">
           <a href="#" class="pop">
-            <img class="thumbnail" src="<%= @activity.user.image %>" alt="..." style="width: 75px; height 75px;">
+            <img class="thumbnail" src="<%= @activity.user.try(:image) %>" alt="..." style="width: 75px; height 75px;">
           </a>
           <div class="modal fade" id="imagemodal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
             <div class="modal-dialog">

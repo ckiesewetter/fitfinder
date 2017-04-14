@@ -37,6 +37,10 @@ th {
   background-color: #dcc7aa;
 }
 
+.navbar-default .navbar-nav>.active>a, .navbar-default .navbar-nav>.active>a:focus, .navbar-default .navbar-nav>.active>a:hover {
+  background-color: #dcc7aa;
+}
+
 .logo-container .navbar-brand:hover,
 .logo-container-xs .navbar-brand:hover {
   background-color: transparent;
@@ -161,6 +165,7 @@ footer {
 .left-search {
   margin-bottom: 40px;
 }
+
 
 #activity_map {
   width: 100%;
