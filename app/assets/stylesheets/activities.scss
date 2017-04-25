@@ -99,8 +99,13 @@ section.welcome {
 }
 
 aside.left-search {
-  padding: 10px 40px;
+  padding: 10px 34px;
 }
+
+aside.right-map {
+    padding-right: 0;
+    padding-left: 0;
+  }
 
 input[type="text"] {
   padding: 6px 10px;
