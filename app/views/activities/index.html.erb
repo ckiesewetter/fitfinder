@@ -6,7 +6,7 @@
 </section>
 
 <section class="row searchmap">
-  <aside class="col-sm-4 left-search">
+  <aside class="col-sm-12 col-lg-4 left-search">
     <h3>What is FindFit?</h3>
     <p>FindFit connects like-minded fitness enthusiasts by giving people the ability to create a fitness group or join an existing fitness group.</p>
 
@@ -38,7 +38,7 @@
     <% end %>
   </aside>
 
-  <aside class="col-sm-8">
+  <aside class="col-sm-12 col-lg-8 right-map">
     <div id="activity_map" data-activity-id="0">Google Map will Appear Here</div>
   </aside>
 </section>
@@ -55,6 +55,7 @@
           <th>Location</th>
           <th>Schedule</th>
           <th>Next at</th>
+          <th>Participation</th>
         </tr>
       </thead>
 
@@ -77,8 +78,7 @@
             <% end %>
             <td><%= link_to 'Show', activity %></td>
             <% if can? :manage, activity %>
-            <td><%= link_to 'Edit', edit_activity_path(activity) %></td>
-            <td><%= link_to 'Destroy', activity, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+            <td><%= link_to 'Delete', activity, method: :delete, data: { confirm: 'Are you sure?' } %></td>
             <% end %>
           </tr>
         <% end %>
