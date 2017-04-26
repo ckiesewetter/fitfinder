@@ -61,7 +61,7 @@
       <tbody>
         <% @activities.each do |activity| %>
           <tr class='activity' data-lat='<%= activity.location.latitude %>' data-lng='<%= activity.location.longitude %>'>
-            <td class='name'><%= activity.name %></td>
+            <td class='name'><%= link_to activity.name, activity_path(activity) %></td>
             <td class='organizer_name'><%= activity.organizer_name %></td>
             <td class='description'><%= activity.description %></td>
             <td class='location'><%= activity.location.try(:name) %></td>
@@ -75,7 +75,6 @@
             <% else %>
             <td id="participate" class="sign_up"><%= link_to 'Sign Up', "/participant/#{activity.id}", method: :post, data: { confirm: 'Are you sure?' }  %></td>
             <% end %>
-            <td><%= link_to 'Show', activity %></td>
             <% if can? :manage, activity %>
             <td><%= link_to 'Edit', edit_activity_path(activity) %></td>
             <td><%= link_to 'Destroy', activity, method: :delete, data: { confirm: 'Are you sure?' } %></td>
