@@ -26,3 +26,13 @@ Things you may want to cover:
 DONE!!! Submit and save latitude and longitude for location. DONE!!!
 DONE!!! Submit and save activity and be able to see all activities. DONE!!!
 Able to see all activities and location on google map.
+
+Contributors to project FindFit:
+
+Andrew Carroll
+Luke Bauer
+Charles Kiesewetter
+Ben Siegfried (Developer / Designer)
+  https://siegfriedmedia.com
+Kaz Tateiwa
+Nathan Vu
