@@ -29,8 +29,8 @@ Able to see all activities and location on google map.
 
 Contributors to project FindFit:
 
-Andrew Carroll
-Luke Bauer
+* Andrew Carroll
+* Luke Bauer
 Charles Kiesewetter
 Ben Siegfried (Developer / Designer)
   https://siegfriedmedia.com
