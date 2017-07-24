@@ -1,3 +1,5 @@
+Final: http://findfit2017.herokuapp.com/users/sign_in
+
 # README
 
 This README would normally document whatever steps are necessary to get the
