@@ -34,7 +34,7 @@ Contributors to project FindFit:
 * Andrew Carroll
 * Luke Bauer
 * Charles Kiesewetter
-* Ben Siegfried (Developer / Designer)
+* Ben Siegfried (Web Designer / Developer)
   https://siegfriedmedia.com
 * Kaz Tateiwa
 * Nathan Vu
