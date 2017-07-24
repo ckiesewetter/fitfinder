@@ -1,4 +1,4 @@
-Final: http://findfit2017.herokuapp.com/users/sign_in
+Project Complete: http://findfit2017.herokuapp.com/users/sign_in
 
 # README
 
